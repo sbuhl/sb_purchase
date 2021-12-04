@@ -1,0 +1,62 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record id="sb_purchase_form" model="ir.ui.view">
+        <field name="name">sb_purchase.purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="readonly"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+<!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="sb_purchase.action_window">
+      <field name="name">sb_purchase window</field>
+      <field name="res_model">sb_purchase.sb_purchase</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+<!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="sb_purchase.action_server">
+      <field name="name">sb_purchase server</field>
+      <field name="model_id" ref="model_sb_purchase_sb_purchase"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+<!-- Top menu item -->
+<!--
+    <menuitem name="sb_purchase" id="sb_purchase.menu_root"/>
+-->
+<!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="sb_purchase.menu_1" parent="sb_purchase.menu_root"/>
+    <menuitem name="Menu 2" id="sb_purchase.menu_2" parent="sb_purchase.menu_root"/>
+-->
+<!-- actions -->
+<!--
+    <menuitem name="List" id="sb_purchase.menu_1_list" parent="sb_purchase.menu_1"
+              action="sb_purchase.action_window"/>
+    <menuitem name="Server to list" id="sb_purchase" parent="sb_purchase.menu_2"
+              action="sb_purchase.action_server"/>
+          -->
+      </data>
+  </odoo>

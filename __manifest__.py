@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "sb_purchase",
+    'name': "gse_custo",
 
     'summary': """
-        Remove the read only on the purchase and sale name""",
+        Ensemble de petites customizations pour la db Goshop Energy""",
 
     'description': """
-        Remove the read only on the purchase and sale name
+        - Remove the read only on the purchase and sale name
     """,
 
     'author': "Sébastien Bühl",

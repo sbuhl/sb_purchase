@@ -20,11 +20,11 @@
     <record id="sb_purchase_form" model="ir.ui.view">
         <field name="name">sb_purchase.sale.order.form</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.sale_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <data>
-                <xpath expr="//field[@name='name']" position="attributes">
+                <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='name']" position="attributes">
                     <attribute name="attrs">{}</attribute>
                     <attribute name="readonly"/>
                 </xpath>

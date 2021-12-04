@@ -17,6 +17,21 @@
         </field>
     </record>
 
+    <record id="sb_purchase_form" model="ir.ui.view">
+        <field name="name">sb_purchase.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="readonly"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
 <!-- actions opening views on models -->
 <!--
     <record model="ir.actions.act_window" id="sb_purchase.action_window">

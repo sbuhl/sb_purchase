@@ -3,15 +3,14 @@
     'name': "sb_purchase",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Remove the read only on the purchase and sale name""",
 
     'description': """
-        Long description of module's purpose
+        Remove the read only on the purchase and sale name
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Sébastien Bühl",
+    'website': "http://www.buhl.be",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -21,7 +20,7 @@
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','purchase'],
+    'depends': ['base', 'purchase', 'sale'],
 
     # always loaded
     'data': [

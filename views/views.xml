@@ -2,8 +2,8 @@
   <data>
     <!-- explicit list view definition -->
 
-    <record id="sb_purchase_form" model="ir.ui.view">
-        <field name="name">sb_purchase.purchase.order.form</field>
+    <record id="gse_purchase_form" model="ir.ui.view">
+        <field name="name">gse_purchase.purchase.order.form</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="priority">99</field>
@@ -17,8 +17,8 @@
         </field>
     </record>
 
-    <record id="sb_purchase_form" model="ir.ui.view">
-        <field name="name">sb_purchase.sale.order.form</field>
+    <record id="gse_sale_form" model="ir.ui.view">
+        <field name="name">gse_sale.sale.order.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="priority">99</field>

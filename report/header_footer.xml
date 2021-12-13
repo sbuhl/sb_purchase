@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<data inherit_id="web.external_layout_boxed">
+	<xpath expr="//div[@name='company_address']" position="replace">
+		<div name="company_address" class="float-right mb4">
+			<span class="company_address">
+				<strong>Goshop Energy</strong><br/>
+				3689, Avenue Isiro, Kinshasa<br/>
+				République Démocratique du Congo
+			</span>
+		</div>					
+	</xpath>
+	<xpath expr="//div[4]" position="replace">
+		<div t-attf-class="footer o_boxed_footer o_company_#{company.id}_layout">
+			<div class="text-center">
+				<ul class="list-inline">
+					<li t-if="company.phone" class="list-inline-item"><span class="o_force_ltr" t-field="company.phone"/></li>
+					<li t-if="company.email" class="list-inline-item"><span t-field="company.email"/></li>
+					<li t-if="company.website" class="list-inline-item"><span t-field="company.website"/></li>
+					<li t-if="forced_vat or company.vat" class="list-inline-item">
+						<t t-esc="company.country_id.vat_label or 'Tax ID'"/>:
+						<span t-if="forced_vat" t-esc="forced_vat"/>
+						<span t-else="" t-field="company.vat"/>
+					</li>
+				</ul>
+				<div t-field="company.report_footer"/>
+				<div t-if="report_type == 'pdf'">
+					Page: <span class="page"/> / <span class="topage"/>
+				</div>
+				<div>
+					<img src="/website/static/src/img/brands.png" class="img-fluid mx-auto" aria-label="Brands" title="MyCompany" role="img"/>
+				</div>
+			</div>
+		</div>
+		
+		
+	</xpath>
+	
+</data>

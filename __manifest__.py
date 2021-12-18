@@ -20,13 +20,15 @@
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'purchase', 'sale_management'],
+    'depends': ['base', 'crm', 'purchase', 'sale', 'sale_management'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'report/header_footer.xml',
+        'report/sale_report.xml',
         'views/views.xml',
+        'views/crm_lead_view.xml'
         #'views/templates.xml',
     ],
     # only loaded in demonstration mode

@@ -9,9 +9,9 @@
                     <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
                 </t>
                 <t t-if="doc.partner_shipping_id == doc.partner_invoice_id
-                   and doc.partner_invoice_id != doc.partner_id
-                   or doc.partner_shipping_id != doc.partner_invoice_id">
-                   <t t-set="information_block">
+                 and doc.partner_invoice_id != doc.partner_id
+                 or doc.partner_shipping_id != doc.partner_invoice_id">
+                 <t t-set="information_block">
                     <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and Shipping Address:</strong>
                     <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing Address:</strong>
                     <div t-field="doc.partner_invoice_id"
@@ -214,21 +214,20 @@
                     </template>
 
 
-                    <template id="report_saleorder">
+                    <template id="report_saleorder_image">
                         <t t-call="web.html_container">
                             <t t-foreach="docs" t-as="doc">
-                                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+                                <t t-call="gse_custo.report_saleorder_document" t-lang="doc.partner_id.lang"/>
                             </t>
                         </t>
                     </template>
 
-                    <template id="report_saleorder_pro_forma">
+                    <template id="report_saleorder_pro_forma_image">
                         <t t-call="web.html_container">
                             <t t-set="is_pro_forma" t-value="True"/>
                             <t t-foreach="docs" t-as="doc">
-                                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+                                <t t-call="gse_custo.report_saleorder_document" t-lang="doc.partner_id.lang"/>
                             </t>
                         </t>
                     </template>
-
                 </odoo>

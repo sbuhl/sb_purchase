@@ -15,12 +15,12 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Customizations',
     'version': '0.1',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'crm', 'purchase', 'sale', 'sale_management'],
+    'depends': ['base', 'account', 'crm', 'purchase', 'sale', 'sale_management'],
 
     # always loaded
     'data': [
@@ -28,7 +28,10 @@
         'report/header_footer.xml',
         'report/sale_report_template.xml',
         'report/sale_report.xml',
+        'report/payment_report_template.xml',
+        'report/payment_report.xml',
         'views/views.xml',
+        'views/recouvrement.xml',
         'views/crm_lead_view.xml'
         #'views/templates.xml',
     ],

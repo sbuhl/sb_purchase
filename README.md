@@ -1,3 +1,6 @@
 Smalls custo for Goshop Energy:
-- purchase, sale: Remove readonly on name 
-- edit the defaut external_layout_boxed template
+- [IMP] purchase, sale: Remove readonly on name 
+- [IMP] defaut external_layout_boxed template
+- [ADD] Quotation template with pictures
+- [ADD] Payment Receipt Report
+- [ADD] Account_move Infos du recouvrement

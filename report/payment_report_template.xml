@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="report_payment_receipt_from_invoice">
+        <t t-name="report_payment_receipt_from_invoice">
+            <t t-call="web.html_container">
+                <!-- Payment receipt report -->
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <style>
+                            .vertical_align_middle th,
+                            .vertical_align_middle td {
+                            vertical-align:middle;
+                            }
+                        </style>
+                        <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                        <t t-set="address">
+                            <address t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                            <div t-if="o.partner_id.vat" class="mt16">
+                                <t t-if="o.company_id.country_id.vat_label" t-esc="o.company_id.country_id.vat_label" id="inv_tax_id_label"/>
+                                <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/></div>
+                            </t>
+                            <div class="page">
+
+                                <div classs="row mt16">
+                                    <div>
+                                        <h1>Receipt For Invoice - 
+                                            
+                                            
+                                            <span t-field="o.name"/>
+                                        </h1>
+                                    </div>
+                                    <div class="mt8">
+                                        <br></br>
+                                        <table class="table">
+                                            <thead>
+                                                <tr style="border-top:1px solid #E3DEDD;border-bottom:1px solid #E3DEDD;">
+                                                    <th width="50%" style="padding-left:5px;text-align:center;">Invoice Total</th>
+                                                    <th style="text-align:center;">Total Paid</th>
+                                                    <th style="text-align:center;">Amount Due</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-left:5px;text-align:center;">
+                                                        <span t-field="o.amount_total"/>
+                                                    </td>
+                                                    <td align="center">
+                                                        <span t-esc="o.amount_total - o.amount_residual"/>
+                                                    </td>
+                                                    <td align="center">
+                                                        <span t-field="o.amount_residual"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mt8">
+                                        <table class="table" style="page-break-inside: avoid;">
+                                            <thead>
+                                                <tr height="30px" style="border-top:1px solid #E3DEDD;border-bottom:1px solid #E3DEDD;">
+                                                    <th style="padding-left:5px;vertical-align:middle;">
+                                                        <strong>Payments</strong>
+                                                    </th>
+                                                    <th style="padding-left:5px;vertical-align:middle;">Date</th>
+                                                    <th>Method</th>
+                                                    <th></th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <t t-set="payments_vals" t-value="o.sudo()._get_reconciled_info_JSON_values()"/>
+                                            <t t-foreach="payments_vals" t-as="payment_vals">
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <t t-esc="payment_vals['date']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                                                    </td>
+                                                    <td>
+                                                        <t t-esc="payment_vals['journal_name']"/>
+                                                    </td>
+                                                    <td></td>
+                                                    <td>
+                                                        <t t-esc="payment_vals['amount']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </odoo>

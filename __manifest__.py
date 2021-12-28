@@ -30,6 +30,10 @@
         'views/recouvrement.xml',
         'views/crm_lead_view.xml'
         'views/purchase_view.xml'
-        #'views/templates.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'gse_custo/static/scss/gse_custo.scss',
+        ]
+    },
 }

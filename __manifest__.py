@@ -28,8 +28,8 @@
         'report/payment_report.xml',
         'views/views.xml',
         'views/recouvrement.xml',
-        'views/crm_lead_view.xml'
-        'views/purchase_view.xml'
+        'views/crm_lead_view.xml',
+        'views/purchase_view.xml',
     ],
     'assets': {
         'web.assets_backend': [

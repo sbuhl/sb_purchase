@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<template id="gse_report_header_footer_custom" inherit_id="web.external_layout_boxed">
-		<xpath expr="//div" position="before">
-<style>.o_boxed_header{
-    text-transform: capitalize;
-    color:red;
-}
-.o_report_layout_boxed h2{    
-    text-transform: capitalize;
-    color:red;
-}
-.o_report_layout_boxed table thead tr th{
-    text-transform: capitalize;
-    color:red;
-}
-.o_report_layout_boxed table tbody tr td{
-    border-top: 1px solid gray('700');
-}</style>		</xpath>
-		<xpath expr="//div[3]" position="after">
-
+		<xpath expr="//div[3]" position="after">		
 			<div>
 				<img src="/gse_custo/static/img/brands_together_2.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
 			</div>
-			
 		</xpath>
 	</template>
 </odoo>

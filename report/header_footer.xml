@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<template id="gse_report_header_footer_custom" inherit_id="web.external_layout_boxed">
-		<xpath expr="//div[3]" position="after">		
+		<xpath expr="//div[@name='company_address']" position="replace">
+			<div name="company_address" class="float-right mb4">
+				<span class="company_address">
+					<strong>Goshop Energy</strong><br/>
+					3689, Avenue Isiro, Kinshasa<br/>
+					République Démocratique du Congo
+				</span>
+			</div>					
+		</xpath>
+		<xpath expr="//div/div[hasclass('text-center')]" position="after">
 			<div>
-				<img src="/gse_custo/static/img/brands_together_2.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
+				<img src="/gse_custo/static/img/brands.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
 			</div>
+			
 		</xpath>
 	</template>
 </odoo>

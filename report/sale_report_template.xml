@@ -9,9 +9,9 @@
                     <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
                 </t>
                 <t t-if="doc.partner_shipping_id == doc.partner_invoice_id
-                 and doc.partner_invoice_id != doc.partner_id
-                 or doc.partner_shipping_id != doc.partner_invoice_id">
-                 <t t-set="information_block">
+                   and doc.partner_invoice_id != doc.partner_id
+                   or doc.partner_shipping_id != doc.partner_invoice_id">
+                   <t t-set="information_block">
                     <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and Shipping Address:</strong>
                     <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing Address:</strong>
                     <div t-field="doc.partner_invoice_id"
@@ -143,91 +143,49 @@
                             </tbody>
                         </table>
 
-                        <div class="clearfix" name="so_total_summary">
-                            <div id="total" class="row" name="total">
-                                <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
-                                    <table class="table table-sm">
-                                        <tr class="border-black o_subtotal" style="">
-                                            <td name="td_amount_untaxed_label"><strong>Subtotal</strong></td>
-                                            <td name="td_amount_untaxed" class="text-right">
-                                                <span t-field="doc.amount_untaxed"/>
-                                            </td>
-                                        </tr>
-                                        <t t-foreach="doc.amount_by_group" t-as="amount_by_group">
-                                            <tr style="">
-                                                <t t-if="amount_by_group[5] == 1 and doc.amount_untaxed == amount_by_group[2]">
-                                                    <td name="td_amount_by_group_label_3">
-                                                        <span t-esc="amount_by_group[0]"/>
-                                                        <span>&amp;nbsp;<span>on</span>&amp;nbsp;<t t-esc="amount_by_group[2]" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></span>
-                                                    </td>
-                                                    <td name="td_amount_by_group_3" class="text-right o_price_total">
-                                                        <span t-esc="amount_by_group[1]"
-                                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                                        </td>
-                                                    </t>
-                                                    <t t-else ="">
-                                                        <td name="td_amount_by_group_label">
-                                                            <span t-esc="amount_by_group[0]"/>
-                                                        </td>
-                                                        <td name="td_amount_by_group" class="text-right o_price_total">
-                                                            <span t-esc="amount_by_group[1]"
-                                                                t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                                            </td>
-                                                        </t>
-                                                    </tr>
-                                                </t>
-                                                <tr class="border-black o_total">
-                                                    <td name="td_amount_total_label"><strong>Total</strong></td>
-                                                    <td name="td_amount_total" class="text-right">
-                                                        <span t-field="doc.amount_total"/>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                        
 
-                                <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">
-                                    <div class="offset-8">
-                                        <strong>Signature</strong>
-                                    </div>
-                                    <div class="offset-8">
-                                        <img t-att-src="image_data_uri(doc.signature)" style="max-height: 4cm; max-width: 8cm;"/>
-                                    </div>
-                                    <div class="offset-8 text-center">
-                                        <p t-field="doc.signed_by"/>
-                                    </div>
-                                </div>
-
-                                <div class="oe_structure"/>
-
-                                <p t-field="doc.note" />
-                                <p t-if="not is_html_empty(doc.payment_term_id.note)">
-                                    <span t-field="doc.payment_term_id.note"/>
-                                </p>
-                                <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
-                                    <strong>Fiscal Position Remark:</strong>
-                                    <span t-field="doc.fiscal_position_id.sudo().note"/>
-                                </p>
+                        <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">
+                            <div class="offset-8">
+                                <strong>Signature</strong>
                             </div>
-                        </t>
-                    </template>
+                            <div class="offset-8">
+                                <img t-att-src="image_data_uri(doc.signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                            </div>
+                            <div class="offset-8 text-center">
+                                <p t-field="doc.signed_by"/>
+                            </div>
+                        </div>
+
+                        <div class="oe_structure"/>
+
+                        <p t-field="doc.note" />
+                        <p t-if="not is_html_empty(doc.payment_term_id.note)">
+                            <span t-field="doc.payment_term_id.note"/>
+                        </p>
+                        <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
+                            <strong>Fiscal Position Remark:</strong>
+                            <span t-field="doc.fiscal_position_id.sudo().note"/>
+                        </p>
+                    </div>
+                </t>
+            </template>
 
 
-                    <template id="report_saleorder_image">
-                        <t t-call="web.html_container">
-                            <t t-foreach="docs" t-as="doc">
-                                <t t-call="gse_custo.report_saleorder_document" t-lang="doc.partner_id.lang"/>
-                            </t>
-                        </t>
-                    </template>
+            <template id="report_saleorder_image">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="gse_custo.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+                    </t>
+                </t>
+            </template>
 
-                    <template id="report_saleorder_pro_forma_image">
-                        <t t-call="web.html_container">
-                            <t t-set="is_pro_forma" t-value="True"/>
-                            <t t-foreach="docs" t-as="doc">
-                                <t t-call="gse_custo.report_saleorder_document" t-lang="doc.partner_id.lang"/>
-                            </t>
-                        </t>
-                    </template>
-                </odoo>
+            <template id="report_saleorder_pro_forma_image">
+                <t t-call="web.html_container">
+                    <t t-set="is_pro_forma" t-value="True"/>
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="gse_custo.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+                    </t>
+                </t>
+            </template>
+        </odoo>

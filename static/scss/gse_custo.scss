@@ -31,7 +31,13 @@ background-size: cover;
 }
 
 .o_boxed_header {
+    border-bottom: 1px solid gray('200');
+    img {
+        max-height: 100px;
+    }
     h4 {
+        color: #999999;
+        font-weight: 400;
         text-transform: capitalize;
     }
 }
@@ -62,6 +68,8 @@ background-size: cover;
             color: gray('700');
             tr {
                 td {
+                    // remove border-top from standard layout
+                    
                     border-right: 1px solid gray('700');
                 }
                 &.o_line_section td,

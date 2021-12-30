@@ -3,22 +3,14 @@
 	<template id="gse_report_header_footer_custom" inherit_id="web.external_layout_boxed">
 		<xpath expr="//div[@name='company_address']" position="replace">
 			<style>
-				.o_boxed_header{
-				text-transform: lowercase;
-				color:red;
-				}
-				.o_report_layout_boxed h2{    
-				text-transform: lowercase;
-				color:red;
-				}
 				.o_report_layout_boxed table thead tr th{
-				text-transform: lowercase;
-				color:red;
+				text-transform: capitalize;
+				
 				}
 				.o_report_layout_boxed table tbody tr td{
 				border-top: 1px solid gray('700');
 				}
-				
+
 			</style>
 
 			<div name="company_address" class="float-right mb4">
@@ -36,4 +28,20 @@
 			
 		</xpath>
 	</template>
+	<template id="gse_report_header_footer_custom_E" inherit_id="sale_management.report_saleorder_document_inherit_sale_management">
+		<xpath expr="//div[@name='signature']" position="before">
+			<style>
+				.o_report_layout_boxed table thead tr th{
+				text-transform: capitalize!important;
+				
+				}
+				table tbody tr td{
+				border-top: 0.5px solid gray!important;
+				}
+
+			</style>
+				
+		</xpath>
+	</template>
+	
 </odoo>

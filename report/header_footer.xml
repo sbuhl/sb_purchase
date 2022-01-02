@@ -4,11 +4,11 @@
 		<xpath expr="//div[@name='company_address']" position="replace">
 			<style>
 				.o_report_layout_boxed table thead tr th{
-				text-transform: capitalize;
+				text-transform: capitalize!important;
 				
 				}
 				.o_report_layout_boxed table tbody tr td{
-				border-top: 1px solid gray('700');
+				border-top: 1px solid black!important;
 				}
 
 			</style>
@@ -36,12 +36,16 @@
 				
 				}
 				table tbody tr td{
-				border-top: 0.5px solid gray!important;
+				border-top: 1px solid black!important;
 				}
 
 			</style>
 				
 		</xpath>
+		<xpath expr="//tbody/t/tr/t/td[@name='td_name']/span" position="attributes">
+			<attribute name="t-field">line.product_id.name</attribute>
+		</xpath>
+
 	</template>
 	
 </odoo>

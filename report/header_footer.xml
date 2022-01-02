@@ -12,18 +12,10 @@
 				}
 
 			</style>
-
-			<div name="company_address" class="float-right mb4">
-				<span class="company_address">
-					<strong>Goshop Energy</strong><br/>
-					3689, Avenue Isiro, Kinshasa<br/>
-					République Démocratique du Congo
-				</span>
-			</div>					
 		</xpath>
 		<xpath expr="//div/div[hasclass('text-center')]" position="after">
 			<div>
-				<img src="/gse_custo/static/img/brands.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
+				<img src="/gse_custo/static/img/brands_together_1.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
 			</div>
 			
 		</xpath>
@@ -40,7 +32,6 @@
 				}
 
 			</style>
-				
 		</xpath>
 		<xpath expr="//tbody/t/tr/t/td[@name='td_name']/span" position="attributes">
 			<attribute name="t-field">line.product_id.name</attribute>

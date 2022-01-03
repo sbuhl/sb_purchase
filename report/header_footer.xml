@@ -15,7 +15,7 @@
 		</xpath>
 		<xpath expr="//div/div[hasclass('text-center')]" position="after">
 			<div>
-				<img src="/gse_custo/static/img/brands_together_1.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
+				<img src="/gse_custo/static/img/brands.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
 			</div>
 			
 		</xpath>

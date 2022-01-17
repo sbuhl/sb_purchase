@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="action_report_saleorder_image" model="ir.actions.report">
-            <field name="name">Quotation / Order with Images</field>
+            <field name="name">[Image] Quotation / Order</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">gse_custo.report_saleorder_image</field>
@@ -12,7 +12,7 @@
             <field name="binding_type">report</field>
         </record>
         <record id="action_report_pro_forma_invoice_image" model="ir.actions.report">
-            <field name="name">PRO-FORMA - Image - Invoice</field>
+            <field name="name">[Image] PRO-FORMA Invoice</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">gse_custo.report_saleorder_pro_forma_image</field>

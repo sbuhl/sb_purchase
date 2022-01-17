@@ -33,9 +33,6 @@
 
 			</style>
 		</xpath>
-		<xpath expr="//tbody/t/tr/t/td[@name='td_name']/span" position="attributes">
-			<attribute name="t-field">line.product_id.name</attribute>
-		</xpath>
 
 	</template>
 	

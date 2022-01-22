@@ -26,6 +26,8 @@
         'report/sale_report.xml',
         'report/payment_report_template.xml',
         'report/payment_report.xml',
+        # 'report/stock_report.xml',
+        # 'report/stock_report_template.xml',
         'views/views.xml',
         'views/recouvrement.xml',
         'views/crm_lead_view.xml',

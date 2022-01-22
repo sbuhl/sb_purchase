@@ -24,6 +24,21 @@
 							</group>
 						</page>
 					</xpath>
+					<xpath expr="//button[@name='action_post'][1]" position="replace">
+						<button name="action_post" string="Post" class="oe_highlight" type="object" groups="account.group_account_invoice" attrs="{'invisible': ['|', '|', ('state', '!=', 'draft'), ('auto_post', '=', True), ('move_type', '!=', 'entry')]}" confirm="Vous avez sélectionné le type de client Vente Privée.       Si c'est le bon type, cliquez sur OK.       Si c'est client Exonéré ou avec TVA, cliquer sur Annuler et modifier le type de client"/>
+					</xpath>
+					<xpath expr="//button[@name='action_post'][2]" position="replace">
+						<button name="action_post" string="Confirm" class="oe_highlight" type="object" groups="account.group_account_invoice" attrs="{'invisible': ['|', '|', '|', ('state', '!=', 'draft'), ('auto_post', '=', True), ('move_type', '=', 'entry'), ('display_inactive_currency_warning','=',True)]}" confirm="Vous avez sélectionné le type de client Vente Privée.       Si c'est le bon type, cliquez sur OK.       Si c'est client Exonéré ou avec TVA, cliquer sur Annuler et modifier le type de client"/>
+					</xpath>
+					<xpath expr="//label[@for='journal_id']" position="attributes">
+						<attribute name="string">Type de client</attribute>
+					</xpath>
+					<xpath expr="//label[@for='journal_id']" position="attributes">
+						<attribute name="groups"/>
+					</xpath>
+					<xpath expr="//field[@name='journal_id']" position="attributes">
+						<attribute name="groups"/>
+					</xpath>
 				</data>
 			</field>
 		</record>
@@ -41,8 +56,9 @@
 						<field name="dossier_complet" string="DC" />
 					</xpath>
 
-			</data>
-		</field>
-	</record>
-</data>
+
+				</data>
+			</field>
+		</record>
+	</data>
 </odoo>

@@ -11,7 +11,7 @@ class AccountMove(models.Model):
 
     bon_livraison = fields.Binary()
 
-    paiement_filename = fields.Char()
+    paiement_filename = fields.Binary()
 
     date_rappel_manuel = fields.Date()
 

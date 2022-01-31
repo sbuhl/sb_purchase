@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="projet_task_gse" model="ir.ui.view">
+			<field name="name">project.task.gse.inherit</field>
+			<field name="model">project.task</field>
+			<field name="inherit_id" ref="project.view_task_form2"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form[1]/sheet[1]/group[1]/group[1]/field[@name='user_id']" position="after">
+					
+					<field name="purchase_order" attrs="{&quot;invisible&quot;: [[&quot;project_id&quot;,&quot;!=&quot;,140]]}"/>
+					<field name="purchase_requisition" attrs="{&quot;invisible&quot;: [[&quot;project_id&quot;,&quot;!=&quot;,140]]}" string="Call For Tender"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

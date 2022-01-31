@@ -3,3 +3,4 @@ Smalls custo for Goshop Energy:
 - [ADD] Quotation template with pictures
 - [ADD] Payment Receipt Report
 - [ADD] Account_move Infos du recouvrement
+- [ADD] SO and PO on Achats Project

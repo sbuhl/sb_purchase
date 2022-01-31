@@ -6,18 +6,18 @@
         Customizations pour Goshop Energy""",
 
     'description': """
-        - Remove the read only on the purchase and sale name
+        
     """,
 
     'author': "Sébastien Bühl",
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.1',
+    'version': '0.1.2',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account', 'crm', 'purchase', 'sale', 'sale_management'],
+    'depends': ['base', 'account', 'crm', 'purchase', 'sale', 'sale_management', 'project', 'purchase_requisition'],
 
     'data': [
         # 'security/ir.model.access.csv',
@@ -32,6 +32,7 @@
         'views/recouvrement.xml',
         'views/crm_lead_view.xml',
         'views/purchase_view.xml',
+        'views/project_task.xml',
     ],
     'assets': {
         'web.assets_backend': [

@@ -8,3 +8,10 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     is_international = fields.Boolean()
+
+
+class PurchaseOrderLine(models.Model):
+    _name = "purchase.order.line"
+    _inherit = "purchase.order.line"
+    
+    quantity_available_gse = fields.Float(related="product_id.qty_available")

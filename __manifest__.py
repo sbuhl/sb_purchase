@@ -33,6 +33,7 @@
         'views/crm_lead_view.xml',
         'views/purchase_view.xml',
         'views/project_task.xml',
+        'views/product.xml',
     ],
     'assets': {
         'web.assets_backend': [

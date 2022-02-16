@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<template id="gse_report_header_footer_custom" inherit_id="web.external_layout_boxed">
-		<xpath expr="//div[@name='company_address']" position="replace">
+		<xpath expr="//div[@name='company_address']" position="after">
 			<style>
 				.o_report_layout_boxed table thead tr th{
 				text-transform: capitalize!important;

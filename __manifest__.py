@@ -21,6 +21,7 @@
 
     'data': [
         # 'security/ir.model.access.csv',
+        'security/security.xml',
         'report/header_footer.xml',
         'report/sale_report_template.xml',
         'report/sale_report.xml',
@@ -34,6 +35,7 @@
         'views/purchase_view.xml',
         'views/project_task.xml',
         'views/product.xml',
+
     ],
     'assets': {
         'web.assets_backend': [

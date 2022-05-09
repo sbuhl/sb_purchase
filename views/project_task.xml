@@ -11,6 +11,9 @@
 					<field name="purchase_order" attrs="{&quot;invisible&quot;: [[&quot;project_id&quot;,&quot;!=&quot;,140]]}"/>
 					<field name="purchase_requisition" attrs="{&quot;invisible&quot;: [[&quot;project_id&quot;,&quot;!=&quot;,140]]}" string="Call For Tender"/>
 				</xpath>
+				<xpath expr="//field[@name='parent_id']" position="attributes">
+					<attribute name="groups"/>
+				</xpath>
 			</field>
 		</record>
 	</data>

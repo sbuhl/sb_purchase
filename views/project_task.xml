@@ -14,6 +14,9 @@
 				<xpath expr="//field[@name='parent_id']" position="attributes">
 					<attribute name="groups"/>
 				</xpath>
+				<xpath expr="//button[@name='action_view_so']" position="attributes">
+				    <attribute name="groups">sales_team.group_sale_salesman</attribute>
+				 </xpath>
 			</field>
 		</record>
 	</data>

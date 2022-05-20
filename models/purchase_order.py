@@ -9,6 +9,11 @@ class PurchaseOrder(models.Model):
 
     is_international = fields.Boolean()
 
+    def button_approve(self):
+        self._add_supplier_to_product()    
+        res = super(PurchaseOrder, self).button_approve()
+        return res
+
 
 class PurchaseOrderLine(models.Model):
     _name = "purchase.order.line"

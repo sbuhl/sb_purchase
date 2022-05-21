@@ -7,4 +7,4 @@ class Lead(models.Model):
     _name = 'crm.lead'
     _inherit = 'crm.lead'
 
-    station = fields.Selection([("goma", "Goma"), ("bukavu", "Bukavu"), ("kinshasa", "Kinshasa"), ("kalemie", "Kalemie"), ("lubumbashi", "lubumbashi"), ("bunia", "Bunia")], default="goma")  # noqa: E501
+    station = fields.Selection([("goma", "Goma"), ("bukavu", "Bukavu"), ("kinshasa", "Kinshasa"), ("kalemie", "Kalemie"), ("lubumbashi", "Lubumbashi"), ("bunia", "Bunia"), ("kigali", "Kigali"), ("kampala", "Kampala")], default="goma")  # noqa: E501

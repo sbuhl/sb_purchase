@@ -1,48 +1,52 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
 
-
-<!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="sb_purchase.action_window">
-      <field name="name">sb_purchase window</field>
-      <field name="res_model">sb_purchase.sb_purchase</field>
+    <record id="gse_custo_action" model="ir.actions.act_window">
+      <field name="name">Tracking Purchase</field>
+      <field name="res_model">project.task</field>
+      <field name="domain">[("project_id", "ilike", "achat"),("stage_id", "!=", "Nouveau")]</field>
       <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="gse_tracking_tree"/>
     </record>
--->
-
-<!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="sb_purchase.action_server">
-      <field name="name">sb_purchase server</field>
-      <field name="model_id" ref="model_sb_purchase_sb_purchase"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
+    
+    <record id="gse_tracking_tree" model="ir.ui.view">
+        <field name="name">gse_tracking.view.tree</field>
+        <field name="model">project.task</field>
+        <field name="arch" type="xml">
+            <tree string="Tracking Purchases" delete="0" sample="1" multi_edit="1">
+                <field name="name" optional="show"/>
+                <field name="dp_date_approve" optional="show" widget="date"/>
+                <field name="final_supplier" optional="show" />
+                <field name="dp_name" optional="show" />
+                <field name="dp_po_state" optional="hide" />
+                
+                <field name="ip_date_approve" optional="hide" widget="date"/>
+                <field name="indirect_supplier" optional="hide" />
+                <field name="ip_name" optional="show" />
+                <field name="ip_po_state" optional="hide" />
+                <field name="ip_receipt_status" optional="show" />
+                
+                <field name="fd_scheduled_date" optional="show" widget="date"/>
+                <field name="dp_receipt_status" optional="show" />
+                <field name="dp_date_done" optional="show" widget="date"/>
+                <field name="fd_location_dest" optional="show" />
+                
+                <field name="fd_forwarder" optional="show" />
+                <field name="ip_date_scheduled" optional="show" widget="date"/>
+                <field name="fd_forwarder_ref" optional="show" />
+                <field name="ip_date_done" optional="hide" widget="date"/>
+                
+                
+            </tree>
+        </field>
     </record>
--->
-
-<!-- Top menu item -->
-<!--
-    <menuitem name="sb_purchase" id="sb_purchase.menu_root"/>
--->
-<!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="sb_purchase.menu_1" parent="sb_purchase.menu_root"/>
-    <menuitem name="Menu 2" id="sb_purchase.menu_2" parent="sb_purchase.menu_root"/>
--->
-<!-- actions -->
-<!--
-    <menuitem name="List" id="sb_purchase.menu_1_list" parent="sb_purchase.menu_1"
-              action="sb_purchase.action_window"/>
-    <menuitem name="Server to list" id="sb_purchase" parent="sb_purchase.menu_2"
-              action="sb_purchase.action_server"/>
-          -->
-      </data>
-  </odoo>
+      
+    <menuitem 
+          name="Tracking Purchases" 
+          id="gse_custo_action_menu" 
+          parent="project.menu_main_pm"
+          action="gse_custo_action"
+          sequence="102"/>
+    
+    </data>
+</odoo>

@@ -158,10 +158,12 @@
 
                 <div class="oe_structure"/>
 
-                <p t-field="doc.note"/>
-                <p t-if="not is_html_empty(doc.payment_term_id.note)">
-                    <span t-field="doc.payment_term_id.note"/>
-                </p>
+                <div style="font-size:10px;">
+                    <p t-field="doc.note"/>
+                    <p t-if="not is_html_empty(doc.payment_term_id.note)">
+                        <span t-field="doc.payment_term_id.note"/>
+                    </p>
+                </div>
                 <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
                     <strong>Fiscal Position Remark:</strong>
                     <span t-field="doc.fiscal_position_id.sudo().note"/>
@@ -171,12 +173,61 @@
     </template>
 
     <template id="report_saleorder_document" inherit_id="gse_custo.report_saleorder_document_copy">
+        <!-- To have the same than other reports -->
+        <xpath expr="//div[@name='signature']" position="before">
+            <style>
+                .o_report_layout_boxed table thead tr th{
+                text-transform: capitalize!important;
+                
+                }
+                table tbody tr td{
+                border-top: 1px solid #DEE2E6!important;
+                }
+
+            </style>
+        </xpath>
+        <xpath expr="//t/t/div/table/tbody/t[2]/tr/t/td[2]/span[2]" position="attributes"> 
+            <attribute name="style" add="font-size:10px;" separator=" "/>
+        </xpath>
+        
+        <xpath expr="//div[@id='informations']/div[5]" position="replace">
+            <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
+                <strong>Salesperson:</strong>
+                <p class="m-0" t-field="doc.user_id"/>
+                <p class="m-0" t-field="doc.user_id.phone"/>
+                <p class="m-0" t-field="doc.user_id.email"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//t/div/p" position="replace">
+            <div style="font-size:10px">
+                <p t-if="not is_html_empty(doc.payment_term_id.note)" >
+                    <span t-field="doc.payment_term_id.note"  />
+                </p>
+                <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
+                    Fiscal Position Remark:
+                    <span t-field="doc.fiscal_position_id.sudo().note"/>
+                </p>
+            </div>
+        </xpath>
+        
+        <xpath expr="//t/div/p[last()]" position="after">
+            <xpath expr="//t/div/p[1]" position="move"/>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']/div[1]" position="before">
+            <xpath expr="//div[@id='informations']/div[5]" position="move"/>
+        </xpath>
+
+        
+        <!-- Spécifique pour les images -->
         <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead/tr/th[1]" position="before">
             <th name="th_image" class="text-center">Image</th>
         </xpath>
         <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody/t[2]/tr/t/td[1]" position="before">
             <td><span t-field="line.product_id.image_128" t-options-widget="&quot;image&quot;"/></td>
         </xpath>
+        
     </template>
 
     <template id="report_saleorder_image">
@@ -194,5 +245,53 @@
                 <t t-call="gse_custo.report_saleorder_document_copy" t-lang="doc.partner_id.lang"/>
             </t>
         </t>
+    </template>
+
+    <template id="report_saleorder_document_custom" inherit_id="sale_management.report_saleorder_document_inherit_sale_management">
+        <xpath expr="//div[@name='signature']" position="before">
+            <style>
+                .o_report_layout_boxed table thead tr th{
+                text-transform: capitalize!important;
+                
+                }
+                table tbody tr td{
+                border-top: 1px solid #DEE2E6!important;
+                }
+
+            </style>
+        </xpath>
+        <xpath expr="//t/t/div/table/tbody/t[2]/tr/t/td[2]/span[2]" position="attributes"> 
+            <attribute name="style" add="font-size:10px;" separator=" "/>
+        </xpath>
+        
+        <xpath expr="//div[@id='informations']/div[5]" position="replace">
+            <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
+                <strong>Salesperson:</strong>
+                <p class="m-0" t-field="doc.user_id"/>
+                <p class="m-0" t-field="doc.user_id.phone"/>
+                <p class="m-0" t-field="doc.user_id.email"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//t/div/p[2]" position="replace">
+            <div style="font-size:10px">
+                <p t-if="not is_html_empty(doc.payment_term_id.note)" >
+                    <span t-field="doc.payment_term_id.note"  />
+                </p>
+                <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
+                    Fiscal Position Remark:
+                    <span t-field="doc.fiscal_position_id.sudo().note"/>
+                </p>
+            </div>
+        </xpath>
+        
+        <xpath expr="//t/div/p[last()]" position="after">
+            <xpath expr="//t/div/p[1]" position="move"/>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']/div[1]" position="before">
+            <xpath expr="//div[@id='informations']/div[5]" position="move"/>
+        </xpath>
+
     </template>
 </odoo>

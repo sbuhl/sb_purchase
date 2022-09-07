@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<template id="gse_report_header_footer_custom" inherit_id="web.external_layout_boxed">
+	<!-- GoShop Energy = Boxed -->
+	<template id="external_layout_boxed_custom" inherit_id="web.external_layout_boxed">
 		<xpath expr="//div[@name='company_address']" position="after">
 			<style>
 				.o_report_layout_boxed table thead tr th{
 				text-transform: capitalize!important;
-				
 				}
 				.o_report_layout_boxed table tbody tr td{
-				border-top: 1px solid black!important;
+				border-top: 0.5px solid gray!important;
 				}
-
 			</style>
 		</xpath>
 		<xpath expr="//div/div[hasclass('text-center')]" position="after">
 			<div>
 				<img src="/gse_custo/static/img/brands.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
 			</div>
-			
 		</xpath>
 	</template>
-	<template id="gse_report_header_footer_custom_E" inherit_id="sale_management.report_saleorder_document_inherit_sale_management">
-		<xpath expr="//div[@name='signature']" position="before">
+	
+	<!-- GoShop = Standard -->
+	<template id="external_layout_standard_custom" inherit_id="web.external_layout_standard">
+		<xpath expr="//div[@name='company_address']" position="after">
 			<style>
 				.o_report_layout_boxed table thead tr th{
 				text-transform: capitalize!important;
-				
 				}
-				table tbody tr td{
-				border-top: 1px solid black!important;
+				.o_report_layout_boxed table tbody tr td{
+				border-top: 0.5px solid gray!important;
 				}
-
 			</style>
 		</xpath>
-
-	</template>
+		<xpath expr="//div/div[2]/div/div" position="attributes">
+			<attribute name="style" add="border-bottom: 1px solid #DEE2E6;" separator=" "/>
+		</xpath>
+		<xpath expr="//div/div[@name='company_address']" position="attributes">
+			<attribute name="style" add="font-size:10px" separator=" "/>
+		</xpath>
+		<xpath expr="//div/div[hasclass('text-center')]" position="after">
+			<div>
+				<img src="/gse_custo/static/img/brands_2.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
+			</div>
+		</xpath>
+		<xpath expr="//div/div[hasclass('text-center')]" position="attributes">
+			<attribute name="style" add="font-size:10px;" separator=" "/>
+		</xpath>
+		<xpath expr="//div/div[@name='moto']" position="attributes">
+			<attribute name="style" add=" color:#DEE2E6; text-transform:uppercase" separator=" "/>
+		</xpath>
+	</template>	
 	
 </odoo>

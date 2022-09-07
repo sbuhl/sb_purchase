@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+		<xpath expr="//div[@id='informations']/div[1]" position="before">
+			<div t-if="o.user_id.name" class="col-auto col-3 mw-100 mb-2">
+				<strong>Salesperson:</strong>
+				<p class="m-0" t-field="o.user_id"/>
+				<p class="m-0" t-field="o.user_id.phone"/>
+				<p class="m-0" t-field="o.user_id.email"/>
+			</div>
+		</xpath>
+		<xpath expr="//t/t/div/table/tbody/t[3]/tr/t/td[2]/span[2]" position="attributes"> 
+			<attribute name="style" add="font-size:10px;" separator=" "/>
+		</xpath>
+		
+		<xpath expr="//p[@name='payment_communication']" position="attributes">
+			<attribute name="style" add="font-size:10px;" separator=" "/>
+		</xpath>
+		<xpath expr="//p[@name='payment_communication']" position="attributes">
+			<attribute name="style" add="font-size:10px;" separator=" "/>
+		</xpath>
+		
+		<xpath expr="//p[@name='payment_term']" position="replace">
+			<div style="font-size:10px;" >
+				<p t-if="o.invoice_payment_term_id" name="payment_term">
+					<span t-field="o.invoice_payment_term_id.note"/>
+				</p>
+			</div>
+		</xpath>
+		<xpath expr="//p[@name='payment_term']/span" position="attributes">
+			<attribute name="style" add="font-size:10px;" separator=" "/>
+		</xpath>
+		<xpath expr="//div[@name='comment']" position="attributes">
+			<attribute name="style" add="font-size:10px;" separator=" "/>
+		</xpath>
+		<xpath expr="//p[@name='note']" position="attributes">
+			<attribute name="style" add="font-size:10px;" separator=" "/>
+		</xpath>
+		<xpath expr="//p[@name='incoterm']" position="attributes">
+			<attribute name="style" add="font-size:10px;" separator=" "/>
+		</xpath>
+		
+		
+	</template>
+	
+</odoo>

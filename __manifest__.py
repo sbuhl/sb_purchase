@@ -13,11 +13,11 @@
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.7.2',
+    'version': '0.1.7.3',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account', 'crm', 'purchase', 'sale', 'sale_management', 'project', 'sale_project', 'purchase_requisition'],
+    'depends': ['base', 'account', 'crm', 'purchase', 'sale', 'sale_management', 'project', 'sale_project', 'purchase_requisition', 'hr'],
 
     'data': [
         # 'security/ir.model.access.csv',

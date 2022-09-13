@@ -199,7 +199,7 @@
             </div>
         </xpath>
 
-        <xpath expr="//t/div/p[2]" position="replace">
+        <xpath expr="//t/div/p" position="replace">
             <div style="font-size:10px">
                 <p t-if="not is_html_empty(doc.payment_term_id.note)" >
                     <span t-field="doc.payment_term_id.note"  />

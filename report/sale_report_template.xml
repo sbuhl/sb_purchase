@@ -158,12 +158,12 @@
 
                 <div class="oe_structure"/>
 
-                <div style="font-size:10px;">
-                    <p t-field="doc.note"/>
-                    <p t-if="not is_html_empty(doc.payment_term_id.note)">
-                        <span t-field="doc.payment_term_id.note"/>
-                    </p>
-                </div>
+                
+                <p t-field="doc.note"/>
+                <p t-if="not is_html_empty(doc.payment_term_id.note)">
+                    <span t-field="doc.payment_term_id.note"/>
+                </p>
+            
                 <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
                     <strong>Fiscal Position Remark:</strong>
                     <span t-field="doc.fiscal_position_id.sudo().note"/>
@@ -199,22 +199,21 @@
             </div>
         </xpath>
 
-        <xpath expr="//t/div/p" position="replace">
+        <xpath expr="//t/div/p[2]" position="replace">
             <div style="font-size:10px">
+                <p t-if="not is_html_empty(doc.payment_term_id.note)">
+                    <span t-field="doc.payment_term_id.note"/>
+                </p>
                 <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
                     Fiscal Position Remark:
                     <span t-field="doc.fiscal_position_id.sudo().note"/>
                 </p>
-                <p t-if="not is_html_empty(doc.payment_term_id.note)" >
-                    <span t-field="doc.payment_term_id.note"  />
-                </p>
-                
             </div>
         </xpath>
         
-        <!-- <xpath expr="//t/div/p[last()]" position="after">
+        <xpath expr="//t/div/p[last()]" position="after">
             <xpath expr="//t/div/p[1]" position="move"/>
-        </xpath> -->
+        </xpath>
 
         <xpath expr="//div[@id='informations']/div[1]" position="before">
             <xpath expr="//div[@id='informations']/div[5]" position="move"/>

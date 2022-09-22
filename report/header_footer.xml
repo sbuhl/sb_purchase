@@ -12,10 +12,16 @@
 				}
 			</style>
 		</xpath>
+		<xpath expr="//div/div/h4" position="attributes">
+			<attribute name="style" add=" color:#DEE2E6; text-transform:uppercase" separator=" "/>
+		</xpath>
 		<xpath expr="//div/div[hasclass('text-center')]" position="after">
 			<div>
 				<img src="/gse_custo/static/img/brands.png" class="" aria-label="Brands" title="Goshop Partners" role="img"/>
 			</div>
+		</xpath>
+		<xpath expr="//div/div[hasclass('text-center')]" position="attributes">
+			<attribute name="style" add="font-size:10px;!important" separator=" "/>
 		</xpath>
 	</template>
 	

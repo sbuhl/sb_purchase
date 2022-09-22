@@ -35,5 +35,20 @@
 				</data>
 			</field>
 		</record>
+
+		<record id="gse_product_template_search_view" model="ir.ui.view">
+			<field name="name">gse_custom.product_template_search_view</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_search_view"/>
+			<field name="priority">99</field>
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//filter[@name='favorites']" position="after">
+						<filter name="studio_filter_2Lwsg" string="Promotion" domain="[['public_categ_ids','ilike','Promotion']]"/>
+						<filter name="studio_filter_2Lwsf" string="Liquidation" domain="[['public_categ_ids','ilike','Liquidation']]"/>
+					</xpath>
+				</data>
+			</field>
+		</record>
 	</data>
 </odoo>

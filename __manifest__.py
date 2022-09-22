@@ -13,7 +13,7 @@
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.7.3',
+    'version': '0.1.7.4',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
@@ -22,6 +22,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'security/security.xml',
+        'report/account.xml',
         'report/header_footer.xml',
         'report/sale_report_template.xml',
         'report/sale_report.xml',

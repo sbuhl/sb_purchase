@@ -6,11 +6,6 @@
 			<field name="model">project.task</field>
 			<field name="inherit_id" ref="project.view_task_form2"/>
 			<field name="arch" type="xml">
-				<!-- <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/field[@name='user_ids']" position="after">
-					<field name="sale_order" attrs="{&quot;invisible&quot;: [[&quot;project_id&quot;,&quot;!=&quot;,140]]}"/>
-					<field name="purchase_order" attrs="{&quot;invisible&quot;: [[&quot;project_id&quot;,&quot;!=&quot;,140]]}"/>
-					<field name="purchase_requisition" attrs="{&quot;invisible&quot;: [[&quot;project_id&quot;,&quot;!=&quot;,140]]}" string="Call For Tender"/>
-				</xpath> -->
 				<xpath expr="//field[@name='parent_id']" position="attributes">
 					<attribute name="groups"/>
 				</xpath>

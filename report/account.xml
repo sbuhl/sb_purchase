@@ -9,17 +9,17 @@
 				<p class="m-0" t-field="o.user_id.email"/>
 			</div>
 		</xpath>
-		<xpath expr="//t/t/div/table/tbody/t[3]/tr/t/td[2]/span[2]" position="attributes"> 
+		<xpath expr="//t/t/div/table/tbody/t[3]/tr/t/td[2]/span[2]" position="attributes">
 			<attribute name="style" add="font-size:10px;" separator=" "/>
 		</xpath>
-		
+
 		<xpath expr="//p[@name='payment_communication']" position="attributes">
 			<attribute name="style" add="font-size:10px;" separator=" "/>
 		</xpath>
 		<xpath expr="//p[@name='payment_communication']" position="attributes">
 			<attribute name="style" add="font-size:10px;" separator=" "/>
 		</xpath>
-		
+
 		<xpath expr="//p[@name='payment_term']" position="replace">
 			<div style="font-size:10px;" >
 				<p t-if="o.invoice_payment_term_id" name="payment_term">
@@ -39,8 +39,7 @@
 		<xpath expr="//p[@name='incoterm']" position="attributes">
 			<attribute name="style" add="font-size:10px;" separator=" "/>
 		</xpath>
-		
-		
+
+
 	</template>
-	
 </odoo>

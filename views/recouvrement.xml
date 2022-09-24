@@ -7,6 +7,12 @@
 			<field name="priority">99</field>
 			<field name="arch" type="xml">
 				<data>
+					<xpath expr="//button[@name='action_reverse']" position="attributes">
+						<attribute name="groups">account.group_account_user</attribute>
+					</xpath>
+					<xpath expr="//button[@name='button_draft']" position="attributes">
+						<attribute name="groups">account.group_account_manager</attribute>
+					</xpath>
 					<xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
 						<page name="recouvrement" string="Recouvrement">
 							<group name="recouvrement_group">
@@ -20,6 +26,7 @@
 									<field name="preuve_paiement" string="Preuve de paiement"/>
 									<field name="dossier_complet" string="Dossier complet"/>
 									<field name="travaux_termines" string="Travaux terminés"/>
+									<field name="salesperson_eval" string="Ne pas considérer dans l'éval" groups="account.group_account_invoice" help="Ne pas considérer cette vente dans l'évaluation du vendeur pour défaut de documentation"/>
 								</group>
 							</group>
 						</page>
@@ -55,8 +62,9 @@
 						<field name="travaux_termines" string="TT" />
 						<field name="dossier_complet" string="DC" />
 					</xpath>
-
-
+					<xpath expr="//field[@name='state']" position="after">
+						<field name="is_move_sent" optional="show" string="Sent"/>
+					</xpath>
 				</data>
 			</field>
 		</record>

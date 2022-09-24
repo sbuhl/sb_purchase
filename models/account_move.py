@@ -20,3 +20,5 @@ class AccountMove(models.Model):
     dossier_complet = fields.Boolean()
 
     travaux_termines = fields.Boolean()
+
+    salesperson_eval = fields.Boolean()

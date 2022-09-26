@@ -17,7 +17,7 @@
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account', 'crm', 'purchase', 'sale', 'sale_management', 'project', 'sale_project', 'purchase_requisition', 'hr', 'base_automation'],
+    'depends': ['base', 'account', 'crm', 'purchase', 'sale', 'sale_management', 'project', 'sale_project', 'purchase_requisition', 'hr', 'base_automation', 'partner_commission'],
 
     'data': [
         # 'security/ir.model.access.csv',

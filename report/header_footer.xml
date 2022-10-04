@@ -24,7 +24,7 @@
 			<attribute name="style" add="font-size:10px;!important" separator=" "/>
 		</xpath>
 	</template>
-	
+
 	<!-- GoShop = Standard -->
 	<template id="external_layout_standard_custom" inherit_id="web.external_layout_standard">
 		<xpath expr="//div[@name='company_address']" position="after">
@@ -54,6 +54,6 @@
 		<xpath expr="//div/div[@name='moto']" position="attributes">
 			<attribute name="style" add=" color:#DEE2E6; text-transform:uppercase" separator=" "/>
 		</xpath>
-	</template>	
-	
+	</template>
+
 </odoo>

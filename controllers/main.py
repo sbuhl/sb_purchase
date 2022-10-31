@@ -16,4 +16,8 @@ class WebsiteSale(WebsiteSale):
             if order and order.state == 'draft':
                 order.warehouse_id = gse_forced_warehouse_id
 
+                for line in order.order_line:
+                    if line.exists():
+                        order._cart_update(product_id=line.product_id.id, line_id=line.id, add_qty=0)
+
         return super()._prepare_product_values(product, category, search, **kwargs)

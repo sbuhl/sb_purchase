@@ -18,8 +18,7 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base_automation', 'account', 'crm', 'sale_project', 'hr',
-        'stock',  # qty_available
-        'website_sale',  # public_categ_ids
+        'website_sale_stock', 'purchase',
     ],
 
     'data': [
@@ -40,6 +39,9 @@
     'assets': {
         'web.assets_backend': [
             'gse_custo/static/scss/gse_custo.scss',
-        ]
+        ],
+        'web.assets_frontend': [
+            'gse_custo/static/src/js/variant_mixin.js',
+        ],
     },
 }

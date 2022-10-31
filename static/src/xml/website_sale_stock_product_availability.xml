@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-extend="website_sale_stock.product_availability">
+        <t t-jquery="#threshold_message" t-operation="append">
+            <a href="#" class="gse_change_warehouse" t-att-data-gse-wh-qty="JSON.stringify(gse_warehouses_qty_custo)">
+                Check quantity in other warehouse
+            </a>
+        </t>
+    </t>
+
+    <t t-name="gse_custo.popup_content_warehouse_select">
+        <div>
+            <div class="card">
+                <label t-foreach="qty" t-as="wh">
+                    <div class="card-body d-flex" style="border-top: 1px solid #dddddd;">
+                        <div class="flex-grow-1">
+                            <span><b t-esc="wh.name"/></span><br />
+                            <p>Only <t t-esc="wh.free_qty"/> Units left in stock.</p>
+                            <i class="fa fa-circle mr-1" style="color:red;"/>Something to show here<br/>
+                            <i class="fa fa-map-marker mr-1" style="color:orange;"/>Like the address maybe?
+                        </div>
+                        <div class="align-self-center">
+                            <input name="gse_select_warehouse" type="radio"
+                                   t-att-value="wh.id" t-att-checked="wh.selected || undefined"/>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <small><i>Note that changing the warehouse location might change the quantity of other products you may already have in your cart.</i></small>
+        </div>
+    </t>
+</templates>

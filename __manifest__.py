@@ -20,7 +20,7 @@
         'base_automation', 'account', 'crm', 'sale_project', 'hr',
         'stock',  # qty_available
         'website_sale',  # public_categ_ids
-    ],
+        'partner_commission'],
 
     'data': [
         'security/security.xml',

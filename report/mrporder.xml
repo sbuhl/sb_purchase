@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="mrp_report_mrporder_custo" inherit_id="mrp.report_mrporder">
+		<xpath expr="//div/table/thead/tr/th[2]" position="attributes">
+			<attribute name="style" add="width:15%" separator=" "/>
+		</xpath>
+        <xpath expr="//div/table/tbody/t/tr/td[2]" position="attributes">
+			<attribute name="style" add="width:15%" separator=" "/>
+		</xpath>
+        <xpath expr="//div/table/tbody/t/tr/td[2]/span" position="attributes">
+			<attribute name="style" add="font-size:10px" separator=" "/>
+		</xpath>
+	</template>
+
+</odoo>

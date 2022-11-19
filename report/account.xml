@@ -40,6 +40,5 @@
 			<attribute name="style" add="font-size:10px;" separator=" "/>
 		</xpath>
 
-
 	</template>
 </odoo>

@@ -12,7 +12,7 @@
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.7.7',
+    'version': '0.1.7.8',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
@@ -30,6 +30,7 @@
         'report/sale_report.xml',
         'report/payment_report_template.xml',
         'report/payment_report.xml',
+        'report/mrporder.xml',
         'views/recouvrement.xml',
         'views/crm_lead_view.xml',
         'views/purchase_view.xml',

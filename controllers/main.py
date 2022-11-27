@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from odoo import http
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.http import request
 
@@ -21,3 +22,10 @@ class WebsiteSale(WebsiteSale):
                         order._cart_update(product_id=line.product_id.id, line_id=line.id, add_qty=0)
 
         return super()._prepare_product_values(product, category, search, **kwargs)
+
+    @http.route('/website/company/force/<int:company_id>', type='http', auth='public', website=True, sitemap=False, multilang=False)
+    def website_company_force(self, company_id, **kw):
+        if company_id in request.website.get_company_ids().ids:
+            request.session['GSE_FORCED_COMPANY_ID'] = company_id
+
+        return request.redirect(request.httprequest.referrer)

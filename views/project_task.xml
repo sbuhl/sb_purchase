@@ -21,5 +21,17 @@
 				 </xpath>
 			</field>
 		</record>
+		<record id="project_kanban_inherit_project_gse" model="ir.ui.view">
+			<field name="name">project.project.project.kanban.inherit.project.gse</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project.project_view_kanban_inherit_project"/>
+			<field name="arch" type="xml">
+				<xpath expr="//div/a[@name='388']/.." position="replace">
+                    <div role="menuitem" groups="project.group_project_user">
+                        <a name="388" type="action" t-attf-context="{'active_id': #{record.id.raw_value}}">Project Updates</a>
+                    </div>
+                </xpath>
+			</field>
+		</record>
 	</data>
 </odoo>

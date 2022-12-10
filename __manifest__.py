@@ -12,12 +12,13 @@
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.8.1',
+    'version': '0.1.8.2',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
     'depends': [
         'base_automation', 'account', 'crm', 'sale_project', 'hr',
+        'project', # recurrence
         'stock',  # qty_available
         'website_sale',  # public_categ_ids
         'partner_commission'],

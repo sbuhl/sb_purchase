@@ -23,9 +23,12 @@
 
                                 <div classs="row mt16">
                                     <div>
-                                        <h1>Receipt For Invoice -
-
-
+                                        <h1 t-if="o.journal_id.name != 'Ventes Privées'">
+                                            Receipt For Invoice -
+                                            <span t-field="o.name"/>
+                                        </h1>
+                                        <h1 t-if="o.journal_id.name == 'Ventes Privées'">
+                                            Receipt For - 
                                             <span t-field="o.name"/>
                                         </h1>
                                     </div>

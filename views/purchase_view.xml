@@ -16,6 +16,9 @@
 					<xpath expr="//button[@name='button_cancel']" position="attributes">
 						<attribute name="groups">gse_custo.group_purchase_super_admin </attribute>
 					</xpath>
+					<xpath expr="//button[@name='button_unlock']" position="attributes">
+                        <attribute name="groups">gse_custo.group_purchase_super_admin</attribute>
+                    </xpath>
 				</data>
 			</field>
 		</record>

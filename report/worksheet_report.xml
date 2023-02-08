@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sbu_project_task" model="ir.ui.view">
+        <field name="name">sbu.project.task</field>
+        <field name="model">industry.fsm.report</field>
+        <field name="inherit_id" ref="industry_fsm_report.worksheet_custom_page"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="/t/div/div[@name='worksheet_task_timesheet']" position="before">
+                    <div name="title">
+                        <h2>#<span t-field="doc.id"/>: <span t-field="doc.name"/> </h2>
+                    </div>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>

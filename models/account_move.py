@@ -21,8 +21,12 @@ class AccountMove(models.Model):
 
     travaux_termines = fields.Boolean()
 
-    salesperson_eval = fields.Boolean()
+    salesperson_eval = fields.Boolean(
+        string="Exclure de l'évaluation du vendeur",
+        tracking=True,
+    )
 
     salesperson_eval_reason = fields.Char(
         string='Raison',
+        tracking=True
     )

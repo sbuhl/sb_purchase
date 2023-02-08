@@ -26,7 +26,7 @@
 									<field name="preuve_paiement" string="Preuve de paiement"/>
 									<field name="dossier_complet" string="Dossier complet"/>
 									<field name="travaux_termines" string="Travaux terminés"/>
-									<field name="salesperson_eval" string="Ne pas considérer dans l'éval" groups="gse_custo.group_recouvrement,account.group_account_user" help="Ne pas considérer cette vente dans l'évaluation du vendeur pour défaut de documentation"/>
+									<field name="salesperson_eval" groups="gse_custo.group_recouvrement,account.group_account_user" help="Ne pas considérer cette vente dans l'évaluation du vendeur pour défaut de documentation"/>
 									<field name="salesperson_eval_reason" attrs="{'invisible': [['salesperson_eval','=',False]]}"/>
 								</group>
 							</group>

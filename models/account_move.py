@@ -26,3 +26,13 @@ class AccountMove(models.Model):
     salesperson_eval_reason = fields.Char(
         string='Raison',
     )
+
+    derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement')
+
+    def _compute_derniere_date_paiement(self):
+        for move in self:
+            last_date = False
+            for payment in move.sudo()._get_reconciled_info_JSON_values():
+                if not last_date or payment['date'] > last_date:
+                    last_date = payment['date']
+            move.derniere_date_paiement = last_date

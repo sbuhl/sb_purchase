@@ -18,10 +18,13 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base_automation', 'account', 'crm', 'sale_project', 'hr',
-        'project', # recurrence
+        'project',  # recurrence
         'stock',  # qty_available
         'website_sale',  # public_categ_ids
-        'partner_commission'],
+        'partner_commission',
+        'industry_fsm_report',
+        'mrp',
+    ],
 
     'data': [
         'security/security.xml',
@@ -32,7 +35,6 @@
         'report/payment_report_template.xml',
         'report/payment_report.xml',
         'report/mrporder.xml',
-        'report/worksheet_report.xml',
         'views/recouvrement.xml',
         'views/crm_lead_view.xml',
         'views/purchase_view.xml',

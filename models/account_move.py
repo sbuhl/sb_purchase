@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class AccountMove(models.Model):
@@ -21,12 +22,16 @@ class AccountMove(models.Model):
 
     travaux_termines = fields.Boolean()
 
-    salesperson_eval = fields.Boolean()
+    salesperson_eval = fields.Boolean(
+        string="Exclure de l'évaluation du vendeur",
+        tracking=True,
+    )
 
     salesperson_eval_reason = fields.Char(
         string='Raison',
+        tracking=True
     )
-
+    
     derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement')
 
     def _compute_derniere_date_paiement(self):
@@ -36,3 +41,9 @@ class AccountMove(models.Model):
                 if not last_date or payment['date'] > last_date:
                     last_date = payment['date']
             move.derniere_date_paiement = last_date
+            
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        if not self.env.user.has_group('account.group_account_manager'):
+            raise UserError("La copie des facture a été désactivée.")
+        return super().copy(default)

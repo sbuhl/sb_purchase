@@ -24,6 +24,7 @@
 								<group name="recouvrement_group_right" string="Vérifié par le département recouvrement">
 									<field name="date_rappel_manuel" string="Date de rappel Manuel"/>
 									<field name="preuve_paiement" string="Preuve de paiement"/>
+									<field name="derniere_date_paiement" string="Date du dernier paiement"/>
 									<field name="dossier_complet" string="Dossier complet"/>
 									<field name="travaux_termines" string="Travaux terminés"/>
 									<field name="salesperson_eval" groups="gse_custo.group_recouvrement,account.group_account_user" help="Ne pas considérer cette vente dans l'évaluation du vendeur pour défaut de documentation"/>
@@ -58,7 +59,7 @@
 			<field name="arch" type="xml">
 				<data>
 					<xpath expr="//field[@name='payment_state']" position="after">
-
+						<field name="derniere_date_paiement" string="Dernier Paiement"/>
 						<field name="preuve_paiement" string="PP" />
 						<field name="travaux_termines" string="TT" />
 						<field name="dossier_complet" string="DC" />

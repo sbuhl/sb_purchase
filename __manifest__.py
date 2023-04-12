@@ -18,10 +18,11 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base_automation', 'account', 'crm', 'sale_project', 'hr',
-        'project', # recurrence
+        'project',  # recurrence
         'stock',  # qty_available
         'website_sale',  # public_categ_ids
         'partner_commission',
+        'industry_fsm_report',
         'mrp',
     ],
 

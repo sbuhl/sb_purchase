@@ -21,7 +21,9 @@
         'project', # recurrence
         'stock',  # qty_available
         'website_sale',  # public_categ_ids
-        'partner_commission'],
+        'partner_commission',
+        'mrp',
+    ],
 
     'data': [
         'security/security.xml',

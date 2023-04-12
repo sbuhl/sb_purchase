@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class AccountMove(models.Model):
@@ -30,3 +31,9 @@ class AccountMove(models.Model):
         string='Raison',
         tracking=True
     )
+
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        if not self.env.user.has_group('account.group_account_manager'):
+            raise UserError("La copie des facture a été désactivée.")
+        return super().copy(default)

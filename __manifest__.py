@@ -35,6 +35,7 @@
         'report/payment_report_template.xml',
         'report/payment_report.xml',
         'report/mrporder.xml',
+        'views/account_bank_statement.xml',
         'views/recouvrement.xml',
         'views/crm_lead_view.xml',
         'views/purchase_view.xml',

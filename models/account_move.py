@@ -47,3 +47,7 @@ class AccountMove(models.Model):
         if not self.env.user.has_group('account.group_account_manager'):
             raise UserError("La copie des facture a été désactivée.")
         return super().copy(default)
+
+class AccountBankStatement(models.Model):
+    _inherit = ['account.bank.statement', 'mail.activity.mixin']
+    _name = 'account.bank.statement'

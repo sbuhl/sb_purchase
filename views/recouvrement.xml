@@ -27,6 +27,8 @@
 									<field name="derniere_date_paiement" string="Date du dernier paiement"/>
 									<field name="dossier_complet" string="Dossier complet"/>
 									<field name="travaux_termines" string="Travaux terminés"/>
+									<!-- need this field in invisible for salesperson_eval_reason which relies on it -->
+									<field name="salesperson_eval" invisible="1"/>
 									<field name="salesperson_eval" groups="gse_custo.group_recouvrement,account.group_account_user" help="Ne pas considérer cette vente dans l'évaluation du vendeur pour défaut de documentation"/>
 									<field name="salesperson_eval_reason" attrs="{'invisible': [['salesperson_eval','=',False]]}"/>
 								</group>

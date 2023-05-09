@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<template id="mrp_report_mrporder_custo" inherit_id="mrp.report_mrporder">
-		<xpath expr="//div/table/thead/tr/th[2]" position="attributes">
+	<template id="mrp_report_mrporder_custo" inherit_id="mrp.report_mrp_production_components">
+		<xpath expr="//table/thead/tr/th[2]" position="attributes">
 			<attribute name="style" add="width:15%" separator=" "/>
 		</xpath>
-        <xpath expr="//div/table/tbody/t/tr/td[2]" position="attributes">
+        <xpath expr="//table/tbody/tr/td[2]" position="attributes">
 			<attribute name="style" add="width:15%" separator=" "/>
 		</xpath>
-        <xpath expr="//div/table/tbody/t/tr/td[2]/span" position="attributes">
+        <xpath expr="//table/tbody/tr/td[2]/div/span" position="attributes">
 			<attribute name="style" add="font-size:10px" separator=" "/>
 		</xpath>
 	</template>

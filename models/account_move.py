@@ -35,12 +35,13 @@ class AccountMove(models.Model):
     derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement',store=True)
 
     def _compute_derniere_date_paiement(self):
-        for move in self:
-            last_date = False
-            for payment in move.sudo()._get_reconciled_info_JSON_values():
-                if not last_date or payment['date'] > last_date:
-                    last_date = payment['date']
-            move.derniere_date_paiement = last_date
+         for move in self:
+                last_date = False
+                if move.invoice_payments_widget:
+                    for payment in move.sudo().filtered('invoice_payments_widget').invoice_payments_widget['content']:
+                        if not last_date or payment['date'] > last_date:
+                            last_date = payment['date']
+                move.derniere_date_paiement = last_date
             
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):

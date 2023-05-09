@@ -1,33 +1,32 @@
 .o_main_navbar {
-    background-color: rgb(15, 23, 42);
+    background: linear-gradient(to right bottom, #0f172a, #090979);
     border-bottom: rgb(15, 23, 0);
-   }
+}
 
 .o_main_navbar > a:hover, .o_main_navbar > a:focus, .o_main_navbar > button:hover, .o_main_navbar > button:focus{
-    background-color: rgb(15, 23, 0);
+    background: linear-gradient(to right bottom, #0f172a, #090979);
 }
 .o_main_navbar > ul > li > a:hover, .o_main_navbar > ul > li > label:hover{
- background-color: rgb(15, 23, 0);
+    background: linear-gradient(to right bottom, #0f172a, #090979);
 }
 .o_main_navbar .show .dropdown-toggle{
- background-color: rgb(15, 23, 0);
+    background: linear-gradient(to right bottom, #0f172a, #090979);
 }
 
 li.show{
- background-color: rgb(15, 23, 0);
+    background: linear-gradient(to right bottom, #0f172a, #090979);
 }
 
 .o_home_menu_background {
-    background: url(/web_enterprise/static/img/home-menu-bg-overlay.svg), linear-gradient(to right bottom, rgba(15,23,42,1), rgba(9,9,121,1));
-background-size: cover;
+    background: linear-gradient(to right bottom, #0f172a, #090979)!important;
 }
 
 .o_ChatWindowHeader{
- background-color: rgb(15, 23, 42);
+    background: linear-gradient(to right bottom, #0f172a, #090979);
 }
 
 .o_searchview .o_searchview_facet .o_searchview_facet_label{
- background-color: rgb(15, 23, 42);
+    background: linear-gradient(to right bottom, #0f172a, #090979);
 }
 .datepicker{
     background-color:white;

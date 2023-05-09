@@ -12,7 +12,7 @@
 				}
 			</style>
 		</xpath>
-		<xpath expr="//div/div/h4" position="attributes">
+		<xpath expr="//div/div/div[hasclass('h4')]" position="attributes">
 			<attribute name="style" add=" color:#DEE2E6; text-transform:uppercase" separator=" "/>
 		</xpath>
 		<xpath expr="//div/div[hasclass('text-center')]" position="after">

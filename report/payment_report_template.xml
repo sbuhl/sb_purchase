@@ -70,17 +70,17 @@
                                                     <th>Amount</th>
                                                 </tr>
                                             </thead>
-                                            <t t-set="payments_vals" t-value="o.sudo()._get_reconciled_info_JSON_values()"/>
-                                            <t t-foreach="payments_vals" t-as="payment_vals">
+                                            <t t-set="payments_vals" t-value="o.sudo().invoice_payments_widget"/>
+                                            <t t-foreach="payments_vals['content']" t-as="payment_vals">
                                                 <tr>
-                                                    <td></td>
+                                                    <td/>
                                                     <td>
                                                         <t t-esc="payment_vals['date']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
                                                     </td>
                                                     <td>
                                                         <t t-esc="payment_vals['journal_name']"/>
                                                     </td>
-                                                    <td></td>
+                                                    <td/>
                                                     <td>
                                                         <t t-esc="payment_vals['amount']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                                                     </td>

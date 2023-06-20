@@ -11,5 +11,27 @@
 				</xpath>
 			</field>
 		</record>
+		<record id="crm_lead_kanban_view_custo" model="ir.ui.view">
+			<field name="name">crm.lead.view.kanban.inherit</field>
+			<field name="model">crm.lead</field>
+			<field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+			<field name="arch" type="xml">
+				<xpath expr="//div[hasclass('oe_kanban_content')]" position="after">
+					<div style="text-align:right">
+						<field name="date_deadline" display="full"/>
+					</div>
+				</xpath>
+			</field>
+		</record>
+		<record id="crm_lead_tree_view_custo" model="ir.ui.view">
+			<field name="name">crm.lead.view.tree.inherit</field>
+			<field name="model">crm.lead</field>
+			<field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+			<field name="arch" type="xml">
+				<field name="priority" position="after">
+                    <field name="date_deadline" optional="hide"/>
+                </field>
+			</field>
+		</record>
 	</data>
 </odoo>

@@ -8,8 +8,12 @@
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='vat']" position="after">
-                    <field name="rccm" attrs="{'invisible': [('country_id', '!=', 41)], }"/>
-                    <field name="id_nat" attrs="{'invisible': [('country_id', '!=', 41)], }"/>
+                    <field name="rccm" attrs="{'invisible': [('country_id', '!=', %(base.cd)d)], }"/>
+                    <field name="id_nat" attrs="{'invisible': [('country_id', '!=', %(base.cd)d)], }"/>
+                    <field name="nif" attrs="{'invisible': [('country_id', '!=', %(base.cd)d)], }"/>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('country_id', '=', %(base.cd)d)]}</attribute>
                 </xpath>
             </field>
         </record>

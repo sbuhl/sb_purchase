@@ -34,3 +34,17 @@ class Partner(models.Model):
         for partner in self:
             if not re.match(pattern, partner.nif):
                 raise ValidationError(_("NIF number is not valid. It should respect the following: YxxxxxxxY (where x = number and Y = capitalised letter)"))
+
+    @api.model
+    def create(self, vals):
+        self._handle_nif_vat_sync(vals)
+        return super().create(vals)
+
+    def write(self, values):
+        self._handle_nif_vat_sync(values)
+        return super().write(values)
+
+    @api.model
+    def _handle_nif_vat_sync(self, vals):
+        if 'nif' in vals:
+            vals['vat'] = vals['nif']

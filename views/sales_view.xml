@@ -7,6 +7,9 @@
 			<field name="priority">99</field>
 			<field name="arch" type="xml">
 				<data>
+					<field name="name" position="after">
+						<field name="exclude_from_review" string="Excl. éval vendeur"/>
+					</field>
 					<xpath expr="//field[@name='payment_term_id']" position="after">
                         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='other_information']/group[2]/group[@name='sale_shipping']/field[@name='warehouse_id'][2]" position="move"/>
                         <xpath expr="//page[@name='other_information']/group[2]/group[@name='sale_shipping']/label[@for='commitment_date']" position="move"/>

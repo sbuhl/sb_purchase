@@ -7,6 +7,9 @@
 			<field name="priority">99</field>
 			<field name="arch" type="xml">
 				<data>
+					<field name="name" position="after">
+						<field name="exclude_from_review" string="Excl. éval vendeur"/>
+					</field>
 					<xpath expr="//button[@name='action_reverse']" position="attributes">
 						<attribute name="groups">account.group_account_user</attribute>
 					</xpath>

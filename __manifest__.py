@@ -41,6 +41,7 @@
         'views/purchase_view.xml',
         'views/project_task.xml',
         'views/product.xml',
+        'views/sale_order.xml',
         'data/automated_actions.xml',
     ],
     'assets': {

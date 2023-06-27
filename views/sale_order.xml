@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+
+    <record id="sale_order_form" model="ir.ui.view">
+        <field name="name">gse_custo.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <data>
+                <field name="name" position="after">
+                    <field name="sbu_field" string="TODO SBU FIELD"/>
+                </field>
+            </data>
+        </field>
+    </record>
+</odoo>

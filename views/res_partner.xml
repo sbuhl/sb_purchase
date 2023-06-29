@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="gse_res_partner_view_form" model="ir.ui.view">
+            <field name="name">gse.res.partner.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="nif" attrs="{'invisible': [('country_id', '!=', %(base.cd)d)], }"/>
+                    <field name="rccm" attrs="{'invisible': [('country_id', '!=', %(base.cd)d)], }"/>
+                    <field name="id_nat" attrs="{'invisible': [('country_id', '!=', %(base.cd)d)], }"/>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('country_id', '=', %(base.cd)d)]}</attribute>
+                    <attribute name="attrs">{'invisible': [('country_id', '=', %(base.cd)d)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

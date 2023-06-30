@@ -24,7 +24,7 @@ class AccountMove(models.Model):
     )
     derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement')
 
-    sbu_field = fields.Boolean('TODO SBU FIELD')
+    sbu_field = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True)
 
     def _compute_derniere_date_paiement(self):
         for move in self:

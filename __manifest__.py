@@ -12,7 +12,7 @@
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.8.6',
+    'version': '0.1.8.7',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly

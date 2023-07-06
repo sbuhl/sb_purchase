@@ -50,6 +50,15 @@ class AccountMove(models.Model):
 
         return res
 
+    def create(self, values):
+         res = super().create(values)
+
+         if 'sbu_field' in values and not self._context.get('ignore_sbu_field'):
+             orders, invoices = self.line_ids.sale_line_ids.order_id.get_recursively_not_directly_related()
+             orders.with_context(ignore_sbu_field=True).sbu_field = values['sbu_field']
+             invoices.with_context(ignore_sbu_field=True).sbu_field = values['sbu_field']
+
+         return res
 
 class AccountBankStatement(models.Model):
     _inherit = ['account.bank.statement', 'mail.activity.mixin']

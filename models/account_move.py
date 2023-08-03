@@ -32,7 +32,7 @@ class AccountMove(models.Model):
         tracking=True
     )
     
-    derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement')
+    derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement',store=True)
 
     def _compute_derniere_date_paiement(self):
         for move in self:

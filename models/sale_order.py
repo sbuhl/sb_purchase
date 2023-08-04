@@ -33,7 +33,7 @@ class SaleOrder(models.Model):
         for order in self:
             related_invoices = order.order_line.invoice_lines.move_id
             if not related_invoices:  # If there are no invoices
-                order.invoice_payment_status = 'no_paid'
+                order.invoice_payment_status = 'not_paid'
             else:
                 if order.state not in ('sale', 'done'):
                     order.invoice_payment_status = 'no'

@@ -13,7 +13,6 @@ class PurchaseOrder(models.Model):
         self._add_supplier_to_product()
         res = super(PurchaseOrder, self).button_approve()
         return res
-    
 
 class PurchaseOrderLine(models.Model):
     _name = "purchase.order.line"

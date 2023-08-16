@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, models, fields
+from odoo import models, fields
 
 
 class SaleOrder(models.Model):
@@ -9,5 +9,3 @@ class SaleOrder(models.Model):
 
     # add tracking to this existing field
     referrer_id = fields.Many2one(tracking=True)
-
-

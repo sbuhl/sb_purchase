@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -13,7 +13,6 @@ class PurchaseOrder(models.Model):
         self._add_supplier_to_product()
         res = super(PurchaseOrder, self).button_approve()
         return res
-
 
 class PurchaseOrderLine(models.Model):
     _name = "purchase.order.line"

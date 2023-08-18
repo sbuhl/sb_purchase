@@ -38,7 +38,7 @@
         'views/account_bank_statement.xml',
         'views/recouvrement.xml',
         'views/crm_lead_view.xml',
-        #'views/purchase_view.xml',
+        'views/purchase_view.xml',
         'views/project_task.xml',
         'views/product.xml',
         'views/res_partner.xml',

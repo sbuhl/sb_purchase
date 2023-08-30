@@ -22,5 +22,21 @@
 				</data>
 			</field>
 		</record>
+		<record id="gse_purchase_order_tree" model="ir.ui.view">
+ 			<field name="name">gse_custom.purchase.order.tree</field>
+ 			<field name="model">purchase.order</field>
+ 			<field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+ 			<field name="priority">99</field>
+ 			<field name="arch" type="xml">
+ 				<data>
+ 					<field name="invoice_status" position="after">
+ 						<field name="invoice_payment_status" 
+ 							decoration-success="invoice_payment_status == 'paid'"
+ 							decoration-info="invoice_payment_status in ('in_payment', 'partially_paid')"
+ 							decoration-warning="invoice_payment_status == 'not_paid'" widget="badge" optional="show" />
+ 					</field>
+ 				</data>
+ 			</field>
+ 		</record>
 	</data>
 </odoo>

@@ -33,5 +33,18 @@
                 </field>
 			</field>
 		</record>
+		<record id="crm_lead_search_view_custo" model="ir.ui.view">
+			<field name="name">crm.lead.view.search.inherit</field>
+			<field name="model">crm.lead</field>
+			<field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+			<field name="arch" type="xml">
+				<xpath expr="//search[1]/group[1]/filter[@name='city']" position="after">
+					<filter name="studio_group_by_qJ3r5" string="Industry" context="{'group_by': 'industry'}"/>
+				</xpath>
+			</field>
+		</record>
+
+
+		
 	</data>
 </odoo>

@@ -2,7 +2,7 @@
 	<data>
 		<record id="gse_sales_order_form" model="ir.ui.view">
 			<field name="name">gse_custom.sales.order.form</field>
-			<field name="model">sales.order</field>
+			<field name="model">sale.order</field>
 			<field name="inherit_id" ref="sale.view_order_form"/>
 			<field name="priority">99</field>
 			<field name="arch" type="xml">

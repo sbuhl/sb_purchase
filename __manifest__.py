@@ -42,6 +42,7 @@
         'views/project_task.xml',
         'views/product.xml',
         'views/res_partner.xml',
+        'views/sales_view.xml',
         'data/automated_actions.xml',
     ],
     'assets': {

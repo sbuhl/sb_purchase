@@ -13,8 +13,9 @@
                         <xpath expr="//page[@name='other_information']/group[2]/group[@name='sale_shipping']/div" position="move"/>
                     </xpath>
                     <xpath expr="//field[@name='analytic_account_id']" position="after">
-                        <xpath expr="//field[@name='commission_plan_id']" position="move"/>
                         <xpath expr="//field[@name='referrer_id']" position="move"/>
+						<xpath expr="//field[@name='commission_plan_id']" position="move"/>
+                        <xpath expr="//field[@name='commission']" position="move"/>
                     </xpath>
 				</data>
 			</field>

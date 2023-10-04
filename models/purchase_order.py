@@ -14,7 +14,6 @@ class PurchaseOrder(models.Model):
         res = super(PurchaseOrder, self).button_approve()
         return res
 
-
 class PurchaseOrderLine(models.Model):
     _name = "purchase.order.line"
     _inherit = "purchase.order.line"

@@ -12,7 +12,7 @@
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.8.6',
+    'version': '0.1.8.7',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
@@ -41,7 +41,8 @@
         'views/purchase_view.xml',
         'views/project_task.xml',
         'views/product.xml',
-        'views/sale_order.xml',
+        'views/res_partner.xml',
+        'views/sales_view.xml',
         'data/automated_actions.xml',
     ],
     'assets': {

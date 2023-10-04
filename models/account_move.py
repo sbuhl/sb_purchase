@@ -24,14 +24,16 @@ class AccountMove(models.Model):
     )
     derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement')
 
-    sbu_field = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True)
+    exclude_from_review = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True, copy=False)
 
     def _compute_derniere_date_paiement(self):
         for move in self:
             last_date = False
-            for payment in move.sudo()._get_reconciled_info_JSON_values():
-                if not last_date or payment['date'] > last_date:
-                    last_date = payment['date']
+            invoice_payments_widget = move.sudo().invoice_payments_widget
+            if invoice_payments_widget:
+                for payment in invoice_payments_widget['content']:
+                    if not last_date or payment['date'] > last_date:
+                        last_date = payment['date']
             move.derniere_date_paiement = last_date
 
     @api.returns('self', lambda value: value.id)
@@ -43,22 +45,24 @@ class AccountMove(models.Model):
     def write(self, values):
         res = super().write(values)
 
-        if 'sbu_field' in values and not self._context.get('ignore_sbu_field'):
+        if 'exclude_from_review' in values and not self._context.get('ignore_exclude_from_review'):
             orders, invoices = self.line_ids.sale_line_ids.order_id.get_recursively_not_directly_related()
-            orders.with_context(ignore_sbu_field=True).sbu_field = values['sbu_field']
-            invoices.with_context(ignore_sbu_field=True).sbu_field = values['sbu_field']
+            orders.with_context(ignore_exclude_from_review=True).exclude_from_review = values['exclude_from_review']
+            invoices.with_context(ignore_exclude_from_review=True).exclude_from_review = values['exclude_from_review']
 
         return res
 
-    def create(self, values):
-         res = super().create(values)
+    @api.model_create_multi
+    def create(self, vals_list):
+        moves = super().create(vals_list)
+        for move in moves:
+            orders, invoices = move.line_ids.sale_line_ids.order_id.get_recursively_not_directly_related()
+            # get a random one, they should be syn'd anyway
+            related_rec = orders and orders[0] or invoices and invoices[0] or None
+            if related_rec:
+                move.exclude_from_review = related_rec.exclude_from_review
+        return moves
 
-         if 'sbu_field' in values and not self._context.get('ignore_sbu_field'):
-             orders, invoices = self.line_ids.sale_line_ids.order_id.get_recursively_not_directly_related()
-             orders.with_context(ignore_sbu_field=True).sbu_field = values['sbu_field']
-             invoices.with_context(ignore_sbu_field=True).sbu_field = values['sbu_field']
-
-         return res
 
 class AccountBankStatement(models.Model):
     _inherit = ['account.bank.statement', 'mail.activity.mixin']

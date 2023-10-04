@@ -10,15 +10,15 @@ class SaleOrder(models.Model):
     # add tracking to this existing field
     referrer_id = fields.Many2one(tracking=True)
 
-    sbu_field = fields.Boolean('TODO SBU FIELD')
+    exclude_from_review = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True, copy=False)
 
     def write(self, values):
         res = super().write(values)
 
-        if 'sbu_field' in values and not self._context.get('ignore_sbu_field'):
+        if 'exclude_from_review' in values and not self._context.get('ignore_exclude_from_review'):
             orders, invoices = self.get_recursively_not_directly_related()
-            orders.with_context(ignore_sbu_field=True).sbu_field = values['sbu_field']
-            invoices.with_context(ignore_sbu_field=True).sbu_field = values['sbu_field']
+            orders.with_context(ignore_exclude_from_review=True).exclude_from_review = values['exclude_from_review']
+            invoices.with_context(ignore_exclude_from_review=True).exclude_from_review = values['exclude_from_review']
 
         return res
 

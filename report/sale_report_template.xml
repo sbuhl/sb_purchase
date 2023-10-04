@@ -134,10 +134,10 @@
 
                 <div class="clearfix" name="so_total_summary">
                     <div id="total" class="row" name="total">
-                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
-                            <table class="table table-sm">
+                        <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                            <table class="table table-sm table-borderless">
                                 <!-- Tax totals -->
-                                <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
+                                <t t-set="tax_totals" t-value="doc.tax_totals"/>
                                 <t t-call="account.document_tax_totals"/>
                             </table>
                         </div>
@@ -388,7 +388,7 @@
             <attribute name="style" add="font-size:10px;" separator=" "/>
         </xpath>
         
-        <xpath expr="//div[@id='informations']/div[5]" position="replace">
+        <!-- <xpath expr="//div[@id='informations']/div[5]" position="replace">
             <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
                 <strong>Salesperson:</strong>
                 <p class="m-0" t-field="doc.user_id"/>
@@ -397,7 +397,7 @@
             </div>
         </xpath>
 
-        <xpath expr="//t/div/p[2]" position="replace">
+        <xpath expr="//t/div/p" position="replace">
             <div style="font-size:10px">
                 <p t-if="not is_html_empty(doc.payment_term_id.note)">
                     <span t-field="doc.payment_term_id.note"/>
@@ -415,7 +415,7 @@
 
         <xpath expr="//div[@id='informations']/div[1]" position="before">
             <xpath expr="//div[@id='informations']/div[5]" position="move"/>
-        </xpath>
+        </xpath>-->
 
         
         <!-- Spécifique pour les images -->
@@ -470,7 +470,7 @@
             <attribute name="style" add="font-size:10px;" separator=" "/>
         </xpath>
         
-        <xpath expr="//div[@id='informations']/div[5]" position="replace">
+        <!-- <xpath expr="//div[@id='informations']/div[5]" position="replace">
             <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
                 <strong>Salesperson:</strong>
                 <p class="m-0" t-field="doc.user_id"/>
@@ -479,10 +479,10 @@
             </div>
         </xpath>
 
-        <xpath expr="//t/div/p[2]" position="replace">
+        <xpath expr="//t/div/p" position="replace">
             <div style="font-size:10px">
-                <p t-if="not is_html_empty(doc.payment_term_id.note)" >
-                    <span t-field="doc.payment_term_id.note"  />
+                <p t-if="not is_html_empty(doc.payment_term_id.note)">
+                    <span t-field="doc.payment_term_id.note"/>
                 </p>
                 <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
                     Fiscal Position Remark:
@@ -497,7 +497,7 @@
 
         <xpath expr="//div[@id='informations']/div[1]" position="before">
             <xpath expr="//div[@id='informations']/div[5]" position="move"/>
-        </xpath>
+        </xpath>-->
 
     </template>
 </odoo>

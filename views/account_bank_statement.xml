@@ -21,12 +21,26 @@
         <field name="arch" type="xml">
             <data>
                 <xpath expr="//field[@name='date']" position="before">
-                    <field name="reconciled_invoices_count" optional="show"/>
-                    <field name="reconciled_statement_lines_count" optional="show"/>
-                    <field name="is_reconciled" optional="show"/>
+                    <field name="reconciled_invoices_count" optional="show" string="# RI"/>
+                    <field name="reconciled_statement_lines_count" optional="show" string="RS"/>
+                    <field name="is_reconciled" optional="show" string="IR"/>
                     <field name="payment_state" optional="show"/>
                 </xpath>
             </data>
         </field>
     </record>
+    <record id="sbu_account_payment_supplier_view_tree" model="ir.ui.view">
+        <field name="name">sbu.account.view_payment_supplier_tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_supplier_payment_tree"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='available_payment_method_line_ids']" position="after">
+                    <field name="create_uid" optional="show"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
 </odoo>
+

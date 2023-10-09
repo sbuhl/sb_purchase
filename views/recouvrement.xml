@@ -7,9 +7,6 @@
 			<field name="priority">99</field>
 			<field name="arch" type="xml">
 				<data>
-					<field name="name" position="after">
-						<field name="exclude_from_review" string="Excl. éval vendeur"/>
-					</field>
 					<xpath expr="//button[@name='action_reverse']" position="attributes">
 						<attribute name="groups">account.group_account_user</attribute>
 					</xpath>
@@ -33,6 +30,8 @@
 									<!-- need this field in invisible for salesperson_eval_reason which relies on it -->
 									<field name="salesperson_eval" invisible="1"/>
 									<field name="salesperson_eval" groups="gse_custo.group_recouvrement,account.group_account_user" help="Ne pas considérer cette vente dans l'évaluation du vendeur pour défaut de documentation"/>
+									<field name="exclude_from_review" invisible="1"/>
+									<field name="exclude_from_review" groups="gse_custo.group_recouvrement,account.group_account_user" string="Excl. éval vendeur"/>
 									<field name="salesperson_eval_reason" attrs="{'invisible': [['salesperson_eval','=',False]]}"/>
 								</group>
 							</group>

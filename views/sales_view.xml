@@ -17,6 +17,10 @@
 						<xpath expr="//field[@name='commission_plan_id']" position="move"/>
                         <xpath expr="//field[@name='commission']" position="move"/>
                     </xpath>
+					<xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='other_information']/group[1]/group[@name='sale_info']/field[@name='payment_exception']" position="after">
+						<field name="exclude_from_review" invisible="1"/>
+						<field name="exclude_from_review" groups="gse_custo.group_recouvrement,account.group_account_user" string="Excl. éval vendeur"/>
+					</xpath>
 				</data>
 			</field>
 		</record>

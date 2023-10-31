@@ -12,6 +12,9 @@
 					</xpath>
 					<xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='order_line']/tree[1]/field[@name='name']" position="after">
 						<field optional="show" name="quantity_available_gse" string="Qty on Hand"/>
+						<field optional="show" name="sales_per_year" string="Total Sales"/>
+						<field optional="show" name="color" widget="color_picker" string="QC"/>
+						<field optional="show" name="product_need_count" string="Qty Needed"/>
 					</xpath>
 					<xpath expr="//button[@name='button_cancel']" position="attributes">
 						<attribute name="groups">gse_custo.group_purchase_super_admin </attribute>

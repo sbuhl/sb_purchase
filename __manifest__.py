@@ -29,6 +29,7 @@
         'sale_project',
         'stock',  # qty_available
         'website_sale',  # public_categ_ids
+        'purchase',
     ],
 
     'data': [
@@ -40,6 +41,7 @@
         'report/payment_report_template.xml',
         'report/payment_report.xml',
         'report/mrporder.xml',
+        'report/purchase.xml',
         'views/account_bank_statement.xml',
         'views/recouvrement.xml',
         'views/crm_lead_view.xml',

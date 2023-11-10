@@ -44,3 +44,4 @@ class Website(discuss.DiscussController):
             request.update_env(su=True)
             request.update_env(user=SUPERUSER_ID)
         return super().mail_attachment_delete(attachment_id, access_token, **kwargs)
+    

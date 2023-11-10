@@ -5,9 +5,11 @@
             <div class="col-6" name="address_not_same_as_shipping">
                 <t t-set="address">
                     <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-                    <div t-if="o.partner_id.vat" id="partner_vat_address_not_same_as_shipping">
-                        <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
-                        <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                    <div t-if="o.partner_id.country_id.code != 'CD'">
+                        <div t-if="o.partner_id.vat" id="partner_vat_address_not_same_as_shipping">
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                        </div>
                     </div>
                     <div t-if="o.partner_id.nif">
                         NIF: <span t-field="o.partner_id.nif"/>
@@ -25,9 +27,11 @@
             <div class="offset-col-6 col-6" name="address_same_as_shipping">
                 <t t-set="address">
                     <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-                    <div t-if="o.partner_id.vat" id="partner_vat_address_same_as_shipping">
-                        <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
-                        <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                    <div t-if="o.partner_id.country_id.code != 'CD'">
+                        <div t-if="o.partner_id.vat" id="partner_vat_address_same_as_shipping">
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                        </div>
                     </div>
                     <div t-if="o.partner_id.nif">
                         NIF: <span t-field="o.partner_id.nif"/>
@@ -45,9 +49,11 @@
             <div class="offset-col-6 col-6" name="no_shipping">
                 <t t-set="address">
                     <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-                    <div t-if="o.partner_id.vat" id="partner_vat_no_shipping">
-                        <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
-                        <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                    <div t-if="o.partner_id.country_id.code != 'CD'">
+                        <div t-if="o.partner_id.vat" id="partner_vat_no_shipping">
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                        </div>
                     </div>
                     <div t-if="o.partner_id.nif">
                         NIF: <span t-field="o.partner_id.nif"/>

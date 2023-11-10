@@ -11,9 +11,9 @@
                         <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
                 </p>
                 <!-- Add nif / rccm / id nat in [image]Quotation/Order -->
-                <p t-if="doc.partner_id.country_id.code == 'CD' and doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></p>
-                <p t-if="doc.partner_id.country_id.code == 'CD' and doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></p>
-                <p t-if="doc.partner_id.country_id.code == 'CD' and doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></p>
+                <span t-if="doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></span><br/>
+                <span t-if="doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></span><br/>
+                <span t-if="doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></span><br/>
             </t>
             <t t-if="doc.partner_shipping_id == doc.partner_invoice_id                              and doc.partner_invoice_id != doc.partner_id                              or doc.partner_shipping_id != doc.partner_invoice_id">
                 <t t-set="information_block">
@@ -186,7 +186,6 @@
             <t t-set="address">
                 <div t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
                 <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
-                <p>NIF: <span t-field="doc.partner_id.vat"/></p>
             </t>
             <t t-if="doc.partner_shipping_id == doc.partner_invoice_id                              and doc.partner_invoice_id != doc.partner_id                              or doc.partner_shipping_id != doc.partner_invoice_id">
                 <t t-set="information_block">

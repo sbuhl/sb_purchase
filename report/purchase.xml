@@ -7,11 +7,18 @@
                 <p t-if="o.partner_id.country_id.code != 'CD'">
                     <p t-if="o.partner_id.vat">
                         <t t-esc="o.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/></p>
-                </p>
-                <!-- Add nif / rccm / id nat in [image] Purchase/Order -->
-                <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
-                <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
-                <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                </p> 
+                <div t-if="o.partner_id.company_type == 'company'">
+                    <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
+                    <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
+                    <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                </div>
+                
+                <div t-if="o.partner_id.company_type != 'company'">
+                    <span t-if="o.partner_id.parent_id.nif">NIF: <span t-field="o.partner_id.parent_id.nif"/></span><br/>
+                    <span t-if="o.partner_id.parent_id.rccm">RCCM: <span t-field="o.partner_id.parent_id.rccm"/></span><br/>
+                    <span t-if="o.partner_id.parent_id.id_nat">Id Nat: <span t-field="o.partner_id.parent_id.id_nat"/></span><br/>
+                </div>
             </t>
         </xpath>
 	</template>
@@ -23,11 +30,18 @@
                 <p t-if="o.partner_id.country_id.code != 'CD'">
                     <p t-if="o.partner_id.vat">
                         <t t-esc="o.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/></p>
-                </p>
-                <!-- Add nif / rccm / id nat in [image]Quotation/Order -->
-                <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
-                <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
-                <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                </p> 
+                <div t-if="o.partner_id.company_type == 'company'">
+                    <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
+                    <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
+                    <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                </div>
+                
+                <div t-if="o.partner_id.company_type != 'company'">
+                    <span t-if="o.partner_id.parent_id.nif">NIF: <span t-field="o.partner_id.parent_id.nif"/></span><br/>
+                    <span t-if="o.partner_id.parent_id.rccm">RCCM: <span t-field="o.partner_id.parent_id.rccm"/></span><br/>
+                    <span t-if="o.partner_id.parent_id.id_nat">Id Nat: <span t-field="o.partner_id.parent_id.id_nat"/></span><br/>
+                </div>
             </t>
         </xpath> 
 	</template>

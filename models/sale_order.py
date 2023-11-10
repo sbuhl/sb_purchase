@@ -12,6 +12,11 @@ class SaleOrder(models.Model):
 
     exclude_from_review = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True, copy=False)
 
+    rccm = fields.Char(string='RCCM', help="Registre de Commerce et du Crédit Mobilier - CD/YYY/RCCM/xx-Y-xxxxx (where x = number and Y = capitalised letter)")
+    id_nat = fields.Char(string='Id. Nat.', help="Identification Nationale - xx-Yxxxx-YxxxxxY (where x = number and Y = capitalised letter)")
+    nif = fields.Char(string='NIF', help="Numéro d'Identification Fiscale - YxxxxxxxY (where x = number and Y = capitalised letter)")
+
+
     def write(self, values):
         res = super().write(values)
 

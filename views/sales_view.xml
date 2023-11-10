@@ -24,6 +24,9 @@
 				</data>
 			</field>
 		</record>
+
+
+
 		<record id="gse_view_order_tree_inherit" model="ir.ui.view">
             <field name="name">sale.order.tree.picking.status</field>
             <field name="model">sale.order</field>

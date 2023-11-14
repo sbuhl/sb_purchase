@@ -14,7 +14,6 @@ class Partner(models.Model):
     id_nat = fields.Char(string='Id. Nat.', help="Identification Nationale - xx-Yxxxx-YxxxxxY (where x = number and Y = capitalised letter)")
     nif = fields.Char(string='NIF', help="Numéro d'Identification Fiscale - YxxxxxxxY (where x = number and Y = capitalised letter)")
 
-    is_child_partner = fields.Boolean(string='Is Child Partner', compute='_compute_is_child_partner', store=True)
 
     @api.constrains('rccm')
     def _check_rccm(self):
@@ -72,6 +71,11 @@ class Partner(models.Model):
             self.rccm = self.parent_id.rccm
             self.id_nat = self.parent_id.id_nat
             self.vat = self.parent_id.vat
+        elif not self.parent_id:
+            self.nif = False
+            self.rccm = False
+            self.id_nat = False
+            self.vat = False
 
     @api.onchange('country_id')
     def _onchange_country_id(self): 
@@ -79,11 +83,3 @@ class Partner(models.Model):
         self.rccm = False
         self.id_nat = False
         self.vat = False
-    
-    @api.onchange('is_child_partner')
-    def _onchange_is_child_partner(self): 
-        if not self.is_child_partner:
-            self.nif = False
-            self.rccm = False
-            self.id_nat = False
-            self.vat = False

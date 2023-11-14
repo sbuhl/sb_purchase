@@ -8,13 +8,14 @@
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='vat']" position="after"> 
-                    <field name="nif" attrs="{'invisible': ['|', ('company_type', '!=', 'company'), ('country_id', '!=', %(base.cd)d)], }"/>
-                    <field name="rccm" attrs="{'invisible': ['|', ('company_type', '!=', 'company'),('country_id', '!=', %(base.cd)d)], }"/>
-                    <field name="id_nat" attrs="{'invisible': ['|', ('company_type', '!=', 'company'),('country_id', '!=', %(base.cd)d)], }"/> 
+                    <field name="nif" attrs="{'invisible': ['|', ('country_id', '!=', %(base.cd)d), '&amp;',('is_child_partner', '=', True),('company_type', '!=', 'company') ,], }"/>
+                    <field name="rccm" attrs="{'invisible': ['|', ('country_id', '!=', %(base.cd)d),'&amp;',('is_child_partner', '=', True),('company_type', '!=', 'company'),], }"/>
+                    <field name="id_nat" attrs="{'invisible': ['|', ('country_id', '!=', %(base.cd)d),'&amp;',('is_child_partner', '=', True),('company_type', '!=', 'company') ,], }"/> 
+                    <field name="is_child_partner" attrs="{'invisible': [('id', '!=', False)]}" />
                 </xpath>
                 <xpath expr="//field[@name='vat']" position="attributes">
                     <attribute name="attrs">{'readonly': [('country_id', '=', %(base.cd)d)]}</attribute>
-                    <attribute name="attrs">{'invisible': [('country_id', '=', %(base.cd)d)]}</attribute>
+                    <attribute name="attrs">{'invisible': ['|', ('country_id', '=', %(base.cd)d),'&amp;',('is_child_partner', '=', True), ('company_type', '!=', 'company')]}</attribute> 
                 </xpath>
             </field>
         </record>

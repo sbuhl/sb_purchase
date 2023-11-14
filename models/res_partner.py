@@ -14,6 +14,8 @@ class Partner(models.Model):
     id_nat = fields.Char(string='Id. Nat.', help="Identification Nationale - xx-Yxxxx-YxxxxxY (where x = number and Y = capitalised letter)")
     nif = fields.Char(string='NIF', help="Numéro d'Identification Fiscale - YxxxxxxxY (where x = number and Y = capitalised letter)")
 
+    is_child_partner = fields.Boolean(string='Is Child Partner', compute='_compute_is_child_partner', store=True)
+
     @api.constrains('rccm')
     def _check_rccm(self):
         pattern = r'^CD/[A-Z]{3}/RCCM/[0-9]{2}-[A-Z]{1}-[0-9]{5}$'
@@ -39,13 +41,49 @@ class Partner(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             self._handle_nif_vat_sync(vals)
-        return super().create(vals_list)
+        return super(Partner, self).create(vals_list)
 
     def write(self, values):
         self._handle_nif_vat_sync(values)
-        return super().write(values)
+        return super(Partner, self).write(values)
 
     @api.model
     def _handle_nif_vat_sync(self, vals):
-        if 'nif' in vals:
-            vals['vat'] = vals['nif']
+        for partner in self: 
+            if 'nif' in vals and partner.country_id.code == 'CD': 
+                vals['vat'] = vals['nif'] if vals['nif'] else False
+
+    @api.depends('parent_id', 'child_ids', 'country_id')
+    def _compute_is_child_partner(self):
+        for partner in self:
+            partner.is_child_partner = bool(partner.parent_id or partner.child_ids)
+            # Pass parent values to child if the parent exists
+            if partner.parent_id:
+                partner.nif = partner.parent_id.nif
+                partner.rccm = partner.parent_id.rccm
+                partner.id_nat = partner.parent_id.id_nat 
+
+    @api.onchange('parent_id')
+    def _onchange_parent_id(self):
+        # Trigger the onchange event when the parent_id is changed
+        # This will update the child fields based on the parent's values
+        if self.parent_id:
+            self.nif = self.parent_id.nif
+            self.rccm = self.parent_id.rccm
+            self.id_nat = self.parent_id.id_nat
+            self.vat = self.parent_id.vat
+
+    @api.onchange('country_id')
+    def _onchange_country_id(self): 
+        self.nif = False
+        self.rccm = False
+        self.id_nat = False
+        self.vat = False
+    
+    @api.onchange('is_child_partner')
+    def _onchange_is_child_partner(self): 
+        if not self.is_child_partner:
+            self.nif = False
+            self.rccm = False
+            self.id_nat = False
+            self.vat = False

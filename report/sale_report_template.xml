@@ -11,16 +11,22 @@
                         <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
                 </p>
                 <!-- Add nif / rccm / id nat in [image]Quotation/Order -->
-                <div t-if="doc.partner_id.company_type == 'company'">
+                <div t-if="doc.partner_id.company_type == 'company'"> 
                     <span t-if="doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></span><br/>
                     <span t-if="doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></span><br/>
                     <span t-if="doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></span><br/>
                 </div>
                 
-                <div t-if="doc.partner_id.company_type != 'company'">
+                <div t-if="doc.partner_id.parent_id"> 
                     <span t-if="doc.partner_id.parent_id.nif">NIF: <span t-field="doc.partner_id.parent_id.nif"/></span><br/>
                     <span t-if="doc.partner_id.parent_id.rccm">RCCM: <span t-field="doc.partner_id.parent_id.rccm"/></span><br/>
                     <span t-if="doc.partner_id.parent_id.id_nat">Id Nat: <span t-field="doc.partner_id.parent_id.id_nat"/></span><br/>
+                </div>
+
+                <div t-elif="doc.partner_id.company_type != 'company'">
+                    <span t-if="doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></span><br/>
+                    <span t-if="doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></span><br/>
+                    <span t-if="doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></span><br/>
                 </div>
             </t>
             <t t-if="doc.partner_shipping_id == doc.partner_invoice_id                              and doc.partner_invoice_id != doc.partner_id                              or doc.partner_shipping_id != doc.partner_invoice_id">

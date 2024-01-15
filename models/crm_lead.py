@@ -4,8 +4,22 @@ from odoo import fields, models
 
 
 class Lead(models.Model):
-    _name = 'crm.lead'
-    _inherit = 'crm.lead'
+    _name = "crm.lead"
+    _inherit = "crm.lead"
 
-    station = fields.Selection([("goma", "Goma"), ("bukavu", "Bukavu"), ("kinshasa", "Kinshasa"), ("kalemie", "Kalemie"), ("lubumbashi", "Lubumbashi"), ("bunia", "Bunia"), ("kigali", "Kigali"), ("kampala", "Kampala")], default="goma")  # noqa: E501
-    industry = fields.Many2one(string='Industry', related='partner_id.industry_id', store=True)
+    station = fields.Selection(
+        [
+            ("goma", "Goma"),
+            ("bukavu", "Bukavu"),
+            ("kinshasa", "Kinshasa"),
+            ("kalemie", "Kalemie"),
+            ("lubumbashi", "Lubumbashi"),
+            ("bunia", "Bunia"),
+            ("kigali", "Kigali"),
+            ("kampala", "Kampala"),
+        ],
+        default="goma",
+    )  # noqa: E501
+    industry = fields.Many2one(
+        string="Industry", related="partner_id.industry_id", store=True
+    )

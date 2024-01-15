@@ -10,6 +10,59 @@
         <xpath expr="//table/tbody/tr/td[2]/div/span" position="attributes">
 			<attribute name="style" add="font-size:10px" separator=" "/>
 		</xpath>
+		<xpath expr="//table/tbody/tr/td[3]" position="attributes">
+			<attribute name="style" add="font-size:10px" separator=" "/>
+		</xpath>
+
+		<xpath expr="//table/thead/tr" position="replace">
+			<tr>
+				<th style="font-size: 14px;">Product</th>
+				<th style="font-size: 14px;" t-if="o.state in ('progress', 'to_close','done')" t-attf-class="{{ 'text-end' if not has_product_barcode else '' }}">Consumed</th>
+				<th style="font-size: 14px;" t-attf-class="{{ 'text-end' if not has_product_barcode else '' }}">To Consume</th>
+				<th style="font-size: 14px;" t-if="has_product_barcode" width="15%" class="text-center">Barcode</th>
+				<th style="font-size: 14px;" class="text-end">Difference</th>
+			</tr>
+		</xpath>
+		<xpath expr="//table/tbody/tr" position="inside">
+			<td class="text-end">
+				<span t-esc="raw_line.product_uom_qty - raw_line.quantity_done" style="font-size:10px"/>
+			</td>
+		</xpath>
+	</template>
+
+	<template id="mrp_report_mrporder_custo2" inherit_id="mrp.report_mrporder">
+		<xpath expr="//div[@class='row mt32 mb32']" position="before"> 
+			<div class="row mt32 mb32">
+				<div class="col-3">
+					<strong>Creation Date:</strong>
+					<span t-esc="o.create_date and o.create_date.strftime('%m/%d/%Y')"/>
+				</div>
+				<div class="col-3">
+					<strong>End Date:</strong>
+					<span t-esc="o.date_finished and o.date_finished.strftime('%m/%d/%Y')"/>
+				</div> 
+			</div>
+		</xpath>
+		<xpath expr="//table/tr[1]" position="inside">
+			<th t-if="o.state == 'done'" class="text-end">Theoritical Duration(minutes)</th>
+			<th class="text-end">Difference (days &amp; hours)</th>
+		</xpath>
+		<xpath expr="//table/tr[2]" position="inside">
+			<td t-if="o.state == 'done'" class="text-end">
+				<span t-esc="line2.duration" style="font-size:10px"/>
+			</td>
+			<td class="text-end">
+				<span t-esc="'{} days {} hours'.format(*divmod(round(abs(line2.duration_expected - line2.duration) / 60), 24))" style="font-size:10px"/>
+			</td>
+		</xpath>
+		<xpath expr="//table/tr[2]/td[3]" position="attributes">
+			<attribute name="style" add="font-size:10px" separator=" "/>
+			<attribute name="class" add="text-end" separator=" "/>
+		</xpath>
+		<xpath expr="//table/tr[2]/td[4]" position="attributes">
+			<attribute name="style" add="font-size:10px" separator=" "/>
+			<attribute name="class" add="text-end" separator=" "/>
+		</xpath>
 	</template>
 
 </odoo>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<template id="mrp_report_mrporder_custo" inherit_id="mrp.report_mrp_production_components">
+	<template id="report_mrp_components_custo_gse" inherit_id="mrp.report_mrp_production_components">
 		<xpath expr="//table/thead/tr/th[2]" position="attributes">
 			<attribute name="style" add="width:15%" separator=" "/>
 		</xpath>
@@ -19,40 +19,51 @@
 				<th style="font-size: 14px;">Product</th>
 				<th style="font-size: 14px;" t-if="o.state in ('progress', 'to_close','done')" t-attf-class="{{ 'text-end' if not has_product_barcode else '' }}">Consumed</th>
 				<th style="font-size: 14px;" t-attf-class="{{ 'text-end' if not has_product_barcode else '' }}">To Consume</th>
+				<th style="font-size: 14px;" class="text-center">Δ</th>
 				<th style="font-size: 14px;" t-if="has_product_barcode" width="15%" class="text-center">Barcode</th>
-				<th style="font-size: 14px;" class="text-end">Difference</th>
 			</tr>
 		</xpath>
-		<xpath expr="//table/tbody/tr" position="inside">
-			<td class="text-end">
+		<xpath expr="//table/tbody/tr/td[3]" position="after">
+			<td class="{{ 'text-end' if not has_product_barcode else '' }}">
 				<span t-esc="raw_line.product_uom_qty - raw_line.quantity_done" style="font-size:10px"/>
 			</td>
 		</xpath>
 	</template>
 
-	<template id="mrp_report_mrporder_custo2" inherit_id="mrp.report_mrporder">
-		<xpath expr="//div[@class='row mt32 mb32']" position="before"> 
+	<template id="report_mrporder_custo_gse" inherit_id="mrp.report_mrporder">
+		<xpath expr="//t/t/t/div/div[3]" position="before"> 
 			<div class="row mt32 mb32">
 				<div class="col-3">
 					<strong>Creation Date:</strong>
 					<span t-esc="o.create_date and o.create_date.strftime('%m/%d/%Y')"/>
 				</div>
 				<div class="col-3">
-					<strong>End Date:</strong>
+					<strong>Production End Date:</strong>
 					<span t-esc="o.date_finished and o.date_finished.strftime('%m/%d/%Y')"/>
 				</div> 
 			</div>
 		</xpath>
 		<xpath expr="//table/tr[1]" position="inside">
-			<th t-if="o.state == 'done'" class="text-end">Theoritical Duration(minutes)</th>
-			<th class="text-end">Difference (days &amp; hours)</th>
+			<th t-if="o.state == 'done'" class="text-end">Exp. Duration (min.)</th>
+			<th class="text-end">Δ</th>
 		</xpath>
 		<xpath expr="//table/tr[2]" position="inside">
 			<td t-if="o.state == 'done'" class="text-end">
-				<span t-esc="line2.duration" style="font-size:10px"/>
+				<span t-esc="line2.duration_expected" style="font-size:10px"/>
 			</td>
 			<td class="text-end">
-				<span t-esc="'{} days {} hours'.format(*divmod(round(abs(line2.duration_expected - line2.duration) / 60), 24))" style="font-size:10px"/>
+				<t t-set="total_minutes" t-value="line2.duration - line2.duration_expected"/>
+				<t t-set="sign" t-value="'+' if total_minutes >= 0 else '-'"/>
+				<t t-set="abs_minutes" t-value="abs(total_minutes)"/>
+				<t t-set="days" t-value="abs_minutes // 1440"/>
+				<t t-set="hours" t-value="(abs_minutes % 1440) // 60"/>
+				<t t-set="minutes" t-value="abs_minutes % 60"/>
+
+				<t t-set="display_days" t-value="days and '{} days '.format(days) or ''"/>
+				<t t-set="display_hours" t-value="hours and '{} hours '.format(hours) or ''"/>
+				<t t-set="display_minutes" t-value="minutes and '{} minutes'.format(round(minutes)) or ''"/>
+
+				<span t-esc="sign + display_days + display_hours + display_minutes" style="font-size:10px"/>
 			</td>
 		</xpath>
 		<xpath expr="//table/tr[2]/td[3]" position="attributes">

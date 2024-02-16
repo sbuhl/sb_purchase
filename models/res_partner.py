@@ -34,7 +34,7 @@ class Partner(models.Model):
         for partner in self:
             if partner.nif and not re.match(pattern, partner.nif):
                 raise ValidationError(_("NIF number is not valid. It should respect the following: YxxxxxxxY (where x = number and Y = capitalised letter)"))
-
+            
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -49,3 +49,17 @@ class Partner(models.Model):
     def _handle_nif_vat_sync(self, vals):
         if 'nif' in vals:
             vals['vat'] = vals['nif']
+
+    @api.onchange("parent_id")
+    def _onchange_parent_id(self):
+        # Trigger the onchange event when the parent_id is changed
+        # This will update the child fields based on the parent's values
+        if self.parent_id:
+            self.nif = self.parent_id.nif
+            self.rccm = self.parent_id.rccm
+            self.id_nat = self.parent_id.id_nat
+            self.vat = self.parent_id.vat
+        elif not self.parent_id:
+            self.nif = False
+            self.rccm = False
+            self.id_nat = False

@@ -9,17 +9,16 @@ class SaleOrder(models.Model):
 
     # add tracking to this existing field
     referrer_id = fields.Many2one(tracking=True)
-    add-payment-status-on-so-2
     invoice_payment_status = fields.Selection([
         ('no', 'Nothing to Pay'),
         ('not_paid', 'Not Paid'),
         ('in_payment', 'In Payment'),
         ('paid', 'Paid'),
         ('partially_paid', 'Partially Paid'),
-    ], string='Invoice Payment Status', compute='_get_invoice_payement_status', store=True, readonly=True)
+    ], string='Invoice Payment Status', compute='_get_invoice_payment_status')
 
     @api.depends('state', 'order_line.invoice_lines.move_id.payment_state')
-    def _get_invoice_payement_status(self):
+    def _get_invoice_payment_status(self):
         """
         Compute the invoice payments status of a SO. Possible statuses:
         - nothing to pay: if the SO is not in status 'sale', or 'done', nothing is invoiced,
@@ -33,11 +32,11 @@ class SaleOrder(models.Model):
         for order in self:
             related_invoices = order.order_line.invoice_lines.move_id
             if not related_invoices:  # If there are no invoices
-                order.invoice_payment_status = 'no_paid'
+                order.invoice_payment_status = 'not_paid'
             else:
                 if order.state not in ('sale', 'done'):
                     order.invoice_payment_status = 'no'
-                elif any(invoice.payment_state == 'not_paid' for invoice in related_invoices):
+                elif all(invoice.payment_state == 'not_paid' for invoice in related_invoices):
                     order.invoice_payment_status = 'not_paid'
                 elif any(invoice.payment_state == 'in_payment' for invoice in related_invoices):
                     order.invoice_payment_status = 'in_payment'
@@ -45,9 +44,11 @@ class SaleOrder(models.Model):
                     order.invoice_payment_status = 'paid'
                 elif any(invoice.payment_state == 'partial' for invoice in related_invoices):
                     order.invoice_payment_status = 'partially_paid'
+                elif any(invoice.payment_state == 'paid' for invoice in related_invoices) and any(invoice.payment_state == 'not_paid' for invoice in related_invoices):
+                    order.invoice_payment_status = 'partially_paid'
                 else:
                     order.invoice_payment_status = 'no'
-=======
+
     exclude_from_review = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True, copy=False)
 
     def write(self, values):

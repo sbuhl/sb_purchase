@@ -49,11 +49,8 @@
         'views/project_task.xml',
         'views/product.xml',
         'views/res_partner.xml',
-     add-payment-status-on-so-2
         'views/sale_order.xml',
-
         'views/sales_view.xml',
-
         'data/automated_actions.xml',
     ],
     'assets': {

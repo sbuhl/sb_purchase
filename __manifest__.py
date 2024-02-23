@@ -17,13 +17,19 @@
 
     # any module necessary for this one to work correctly
     'depends': [
-        'base_automation', 'account', 'crm', 'sale_project', 'hr',
-        'project',  # recurrence
-        'stock',  # qty_available
-        'website_sale',  # public_categ_ids
-        'partner_commission',
+        'account', 
+        'base',
+        'base_automation', 
+        'crm',
+        'hr',
         'industry_fsm_report',
         'mrp',
+        'partner_commission',
+        'project',  # recurrence
+        'sale_project',
+        'stock',  # qty_available
+        'website_sale',  # public_categ_ids
+        'purchase'
     ],
 
     'data': [
@@ -35,6 +41,7 @@
         'report/payment_report_template.xml',
         'report/payment_report.xml',
         'report/mrporder.xml',
+        'report/purchase.xml',
         'views/account_bank_statement.xml',
         'views/recouvrement.xml',
         'views/crm_lead_view.xml',
@@ -42,7 +49,11 @@
         'views/project_task.xml',
         'views/product.xml',
         'views/res_partner.xml',
+     add-payment-status-on-so-2
         'views/sale_order.xml',
+
+        'views/sales_view.xml',
+
         'data/automated_actions.xml',
     ],
     'assets': {

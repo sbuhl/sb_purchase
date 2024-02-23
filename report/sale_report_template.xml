@@ -6,7 +6,28 @@
             <t t-set="forced_vat" t-value="doc.fiscal_position_id.foreign_vat"/> <!-- So that it appears in the footer of the report instead of the company VAT if it's set -->
             <t t-set="address">
                 <div t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
-                <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+                <p t-if="doc.partner_id.country_id.code != 'CD'">
+                    <p t-if="doc.partner_id.vat">
+                        <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+                </p>
+
+                <p t-if="doc.partner_id.company_type == 'company' and doc.partner_id.country_id.code == 'CD'"> 
+                    <span t-if="doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></span><br/>
+                    <span t-if="doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></span><br/>
+                    <span t-if="doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></span><br/>
+                </p>
+                
+                <p t-if="doc.partner_id.company_type != 'company' and doc.partner_id.parent_id.country_id.code == 'CD'">
+                    <span t-if="doc.partner_id.parent_id.nif">NIF: <t t-esc="doc.partner_id.parent_id.nif"/></span><br/>
+                    <span t-if="doc.partner_id.parent_id.rccm">RCCM: <t t-esc="doc.partner_id.parent_id.rccm"/></span><br/>
+                    <span t-if="doc.partner_id.parent_id.id_nat">Id Nat: <t t-esc="doc.partner_id.parent_id.id_nat"/></span><br/>
+                </p>
+
+                <p t-elif="doc.partner_id.company_type != 'company' and doc.partner_id.country_id.code == 'CD'">
+                    <span t-if="doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></span><br/>
+                    <span t-if="doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></span><br/>
+                    <span t-if="doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></span><br/>
+                </p>
             </t>
             <t t-if="doc.partner_shipping_id == doc.partner_invoice_id                              and doc.partner_invoice_id != doc.partner_id                              or doc.partner_shipping_id != doc.partner_invoice_id">
                 <t t-set="information_block">
@@ -387,16 +408,8 @@
         <xpath expr="//t/t/div/table/tbody/t[2]/tr/t/td[2]/span[2]" position="attributes"> 
             <attribute name="style" add="font-size:10px;" separator=" "/>
         </xpath>
-        
-        <!-- <xpath expr="//div[@id='informations']/div[5]" position="replace">
-            <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
-                <strong>Salesperson:</strong>
-                <p class="m-0" t-field="doc.user_id"/>
-                <p class="m-0" t-field="doc.user_id.phone"/>
-                <p class="m-0" t-field="doc.user_id.email"/>
-            </div>
-        </xpath>
 
+        <!--
         <xpath expr="//t/div/p" position="replace">
             <div style="font-size:10px">
                 <p t-if="not is_html_empty(doc.payment_term_id.note)">
@@ -500,4 +513,35 @@
         </xpath>-->
 
     </template>
+
+    <template id="report_saleorder_document_inherited" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-set='address']" position="replace">
+            <t t-set="address">
+                <div t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                <p t-if="doc.partner_id.country_id.code != 'CD'">
+                    <p t-if="doc.partner_id.vat">
+                        <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>
+                </p>
+                <!-- Add nif / rccm / id nat in Quotation/Order -->
+                <div t-if="doc.partner_id.company_type == 'company'"> 
+                    <span t-if="doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></span><br/>
+                    <span t-if="doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></span><br/>
+                    <span t-if="doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></span><br/>
+                </div>
+                
+                <div t-if="doc.partner_id.parent_id">
+                    <span t-if="doc.partner_id.parent_id.nif">NIF: <span t-field="doc.partner_id.parent_id.nif"/></span><br/>
+                    <span t-if="doc.partner_id.parent_id.rccm">RCCM: <span t-field="doc.partner_id.parent_id.rccm"/></span><br/>
+                    <span t-if="doc.partner_id.parent_id.id_nat">Id Nat: <span t-field="doc.partner_id.parent_id.id_nat"/></span><br/>
+                </div>
+
+                <div t-elif="doc.partner_id.company_type != 'company'">
+                    <span t-if="doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></span><br/>
+                    <span t-if="doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></span><br/>
+                    <span t-if="doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></span><br/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    
 </odoo>

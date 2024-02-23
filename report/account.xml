@@ -1,6 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@name='address_not_same_as_shipping']" position="replace">
+            <div class="col-6" name="address_not_same_as_shipping">
+                <t t-set="address">
+                    <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                    <div t-if="o.partner_id.country_id.code != 'CD'">
+                        <div t-if="o.partner_id.vat" id="partner_vat_address_not_same_as_shipping">
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                        </div>
+                    </div>
+
+                    <p t-if="o.partner_id.company_type == 'company' and o.partner_id.country_id.code == 'CD'"> 
+                        <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                    </p>
+                    
+                    <p t-if="o.partner_id.company_type != 'company' and o.partner_id.parent_id.country_id.code == 'CD'">
+                        <span t-if="o.partner_id.parent_id.nif">NIF: <t t-esc="o.partner_id.parent_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.parent_id.rccm">RCCM: <t t-esc="o.partner_id.parent_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.parent_id.id_nat">Id Nat: <t t-esc="o.partner_id.parent_id.id_nat"/></span><br/>
+                    </p>
+                    
+                    <p t-elif="o.partner_id.company_type != 'company' and o.partner_id.country_id.code == 'CD'">
+                        <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                    </p>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[@name='address_same_as_shipping']" position="replace">
+            <div class="offset-col-6 col-6" name="address_same_as_shipping">
+                <t t-set="address">
+                    <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                    <div t-if="o.partner_id.country_id.code != 'CD'">
+                        <div t-if="o.partner_id.vat" id="partner_vat_address_same_as_shipping">
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                        </div>
+                    </div>
+                    
+                    <p t-if="o.partner_id.company_type == 'company' and o.partner_id.country_id.code == 'CD'"> 
+                        <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                    </p>
+                    
+                    <p t-if="o.partner_id.company_type != 'company' and o.partner_id.parent_id.country_id.code == 'CD'">
+                        <span t-if="o.partner_id.parent_id.nif">NIF: <t t-esc="o.partner_id.parent_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.parent_id.rccm">RCCM: <t t-esc="o.partner_id.parent_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.parent_id.id_nat">Id Nat: <t t-esc="o.partner_id.parent_id.id_nat"/></span><br/>
+                    </p>
+                    
+                    <p t-elif="o.partner_id.company_type != 'company' and o.partner_id.country_id.code == 'CD'">
+                        <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                    </p>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[@name='no_shipping']" position="replace">
+            <div class="offset-col-6 col-6" name="no_shipping">
+                <t t-set="address">
+                    <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                    <div t-if="o.partner_id.country_id.code != 'CD'">
+                        <div t-if="o.partner_id.vat" id="partner_vat_no_shipping">
+                            <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                            <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                        </div>
+                    </div>
+                    
+                    <p t-if="o.partner_id.company_type == 'company' and o.partner_id.country_id.code == 'CD'"> 
+                        <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                    </p>
+                    
+                    <p t-if="o.partner_id.company_type != 'company' and o.partner_id.parent_id.country_id.code == 'CD'">
+                        <span t-if="o.partner_id.parent_id.nif">NIF: <t t-esc="o.partner_id.parent_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.parent_id.rccm">RCCM: <t t-esc="o.partner_id.parent_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.parent_id.id_nat">Id Nat: <t t-esc="o.partner_id.parent_id.id_nat"/></span><br/>
+                    </p>
+                    
+                    <p t-elif="o.partner_id.company_type != 'company' and o.partner_id.country_id.code == 'CD'">
+                        <span t-if="o.partner_id.nif">NIF: <span t-field="o.partner_id.nif"/></span><br/>
+                        <span t-if="o.partner_id.rccm">RCCM: <span t-field="o.partner_id.rccm"/></span><br/>
+                        <span t-if="o.partner_id.id_nat">Id Nat: <span t-field="o.partner_id.id_nat"/></span><br/>
+                    </p>
+                </t>
+            </div>
+        </xpath>
         <!-- Remove Invoice Mentions -->
         <xpath expr="//div/h2" position="replace">
             <h2 t-if="o.journal_id.name != 'Ventes Privées'">

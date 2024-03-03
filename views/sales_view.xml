@@ -8,16 +8,17 @@
 			<field name="arch" type="xml">
 				<data>
 					<xpath expr="//field[@name='payment_term_id']" position="after">
-                        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='other_information']/group[2]/group[@name='sale_shipping']/field[@name='warehouse_id'][2]" position="move"/>
-                        <xpath expr="//page[@name='other_information']/group[2]/group[@name='sale_shipping']/label[@for='commitment_date']" position="move"/>
-                        <xpath expr="//page[@name='other_information']/group[2]/group[@name='sale_shipping']/div" position="move"/>
+						<!-- TODO -->
+                        <!-- <xpath expr="//group[@name='sale_shipping']/field[@name='warehouse_id'][2]" position="move"/> -->
+                        <xpath expr="//group[@name='sale_shipping']/label[@for='commitment_date']" position="move"/>
+                        <xpath expr="//group[@name='sale_shipping']/div" position="move"/>
                     </xpath>
                     <xpath expr="//field[@name='analytic_account_id']" position="after">
                         <xpath expr="//field[@name='referrer_id']" position="move"/>
 						<xpath expr="//field[@name='commission_plan_id']" position="move"/>
                         <xpath expr="//field[@name='commission']" position="move"/>
                     </xpath>
-					<xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='other_information']/group[1]/group[@name='sale_info']/field[@name='payment_exception']" position="after">
+					<xpath expr="//group[@name='sale_info']" position="inside">
 						<field name="exclude_from_review" invisible="1"/>
 						<field name="exclude_from_review" groups="gse_custo.group_recouvrement,account.group_account_user" string="Excl. éval vendeur"/>
 					</xpath>
@@ -29,7 +30,7 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_tree"/>
             <field name="arch" type="xml">
-                <field name="partner_id" position="after">                    
+                <field name="partner_id" position="after">
                     <field name="client_order_ref" optional="show"/>
                 </field>
             </field>

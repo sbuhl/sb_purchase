@@ -43,7 +43,7 @@
         'report/mrporder.xml',
         'report/purchase.xml',
         'views/account_bank_statement.xml',
-        'views/recouvrement.xml',
+        'views/account_move.xml',
         'views/crm_lead_view.xml',
         'views/purchase_view.xml',
         'views/project_task.xml',

@@ -12,14 +12,14 @@
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.8.9',
+    'version': '17.0.1.0.0',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
     'depends': [
-        'account', 
+        'account',
         'base',
-        'base_automation', 
+        'base_automation',
         'crm',
         'hr',
         'industry_fsm_report',

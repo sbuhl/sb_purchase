@@ -1,13 +1,20 @@
 <odoo>
+    <record id="action_add_recouvrement_follower" model="ir.actions.server">
+        <field name="name">Auto Add Followers on Invoice Sent</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="state">code</field>
+        <field name="code">
+record.message_subscribe(env.ref('gse_custo.group_recouvrement').users.partner_id.ids)
+        </field>
+    </record>
+
     <record id="bundle_create" model="base.automation">
         <field name="name">Auto Add Followers on Invoice Sent</field>
         <field name="model_id" ref="account.model_account_move"/>
         <field name="trigger">on_write</field>
         <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__is_move_sent')])]"/>
         <field name="active" eval="True"/>
-        <field name="state">code</field>
-        <field name="code">
-record.message_subscribe(env.ref('gse_custo.group_recouvrement').users.partner_id.ids)
-       </field>
+        <field name="action_server_ids" eval="[(4, ref('action_add_recouvrement_follower'))]"/>
    </record>
 </odoo>

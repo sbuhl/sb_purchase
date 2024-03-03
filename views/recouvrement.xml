@@ -30,16 +30,16 @@
 									<!-- need this field in invisible for salesperson_eval_reason which relies on it -->
 									<field name="exclude_from_review" invisible="1"/>
 									<field name="exclude_from_review" groups="gse_custo.group_recouvrement,account.group_account_user" string="Excl. éval vendeur"/>
-									<field name="salesperson_eval_reason" attrs="{'invisible': [['exclude_from_review','=',False]]}"/>
+									<field name="salesperson_eval_reason" invisible="not exclude_from_review"/>
 								</group>
 							</group>
 						</page>
 					</xpath>
 					<xpath expr="//button[@name='action_post'][1]" position="replace">
-						<button name="action_post" string="Post" class="oe_highlight" type="object" groups="account.group_account_invoice" attrs="{'invisible': ['|', '|', ('state', '!=', 'draft'), ('auto_post', '=', True), ('move_type', '!=', 'entry')]}" confirm="Vous avez sélectionné le type de client Vente Privée.       Si c'est le bon type, cliquez sur OK.       Si c'est client Exonéré ou avec TVA, cliquer sur Annuler et modifier le type de client"/>
+						<button name="action_post" string="Post" class="oe_highlight" type="object" groups="account.group_account_invoice" invisible="state != 'draft' or auto_post or move_type != 'entry'" confirm="Vous avez sélectionné le type de client Vente Privée.       Si c'est le bon type, cliquez sur OK.       Si c'est client Exonéré ou avec TVA, cliquer sur Annuler et modifier le type de client"/>
 					</xpath>
 					<xpath expr="//button[@name='action_post'][2]" position="replace">
-						<button name="action_post" string="Confirm" class="oe_highlight" type="object" groups="account.group_account_invoice" attrs="{'invisible': ['|', '|', '|', ('state', '!=', 'draft'), ('auto_post', '=', True), ('move_type', '=', 'entry'), ('display_inactive_currency_warning','=',True)]}" confirm="Vous avez sélectionné le type de client Vente Privée.       Si c'est le bon type, cliquez sur OK.       Si c'est client Exonéré ou avec TVA, cliquer sur Annuler et modifier le type de client"/>
+						<button name="action_post" string="Confirm" class="oe_highlight" type="object" groups="account.group_account_invoice" invisible="state != 'draft' or auto_post or move_type == 'entry' or display_inactive_currency_warning" confirm="Vous avez sélectionné le type de client Vente Privée.       Si c'est le bon type, cliquez sur OK.       Si c'est client Exonéré ou avec TVA, cliquer sur Annuler et modifier le type de client"/>
 					</xpath>
 					<xpath expr="//label[@for='journal_id']" position="attributes">
 						<attribute name="string">Type de client</attribute>
@@ -54,7 +54,7 @@
 						<attribute name="groups"/>
 					</xpath>
 					<xpath expr="//group/field[@name='currency_id']" position="replace">
-						<field name="currency_id" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="!account.group_account_readonly,base.group_multi_currency" invisible="1"/>
+						<field name="currency_id" readonly="state != 'draft'" groups="!account.group_account_readonly,base.group_multi_currency" invisible="1"/>
 					</xpath>
 				</data>
 			</field>

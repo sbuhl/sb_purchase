@@ -84,7 +84,7 @@
                     <!-- In case we want to repeat the header, remove "display: table-row-group" -->
                     <thead style="display: table-row-group">
                         <tr>
-                            <th name="th_index" class="text-left"></th>
+                            <th name="th_index" class="text-left">number</th>
                             <th name="th_description" class="text-left">Description</th>
                             <th name="th_quantity" class="text-right">Quantity</th>
                             <th name="th_priceunit" class="text-right">Unit Price</th>
@@ -132,14 +132,14 @@
                                 </t>
                                 <t t-if="line.display_type == 'line_section'">
                                     <td name="td_section_line" colspan="99">
-                                        <span t-field="line.name"/>
+                                        <span t-field="line.name" style="margin-left: 80px;"/>
                                     </td>
                                     <t t-set="current_section" t-value="line"/>
                                     <t t-set="current_subtotal" t-value="0"/>
                                 </t>
                                 <t t-if="line.display_type == 'line_note'">
                                     <td name="td_note_line" colspan="99">
-                                        <span t-field="line.name"/>
+                                        <span t-field="line.name" style="margin-left: 80px;"/>
                                     </td>
                                 </t>
                             </tr>
@@ -408,9 +408,9 @@
 
             </style>
         </xpath>
-        <xpath expr="//t/t/div/table/tbody/t[2]/tr/t/td[2]/span[2]" position="attributes"> 
+        <!-- <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody/t[3]/tr/t/td[2]/span[2]" position="attributes">
             <attribute name="style" add="font-size:10px;" separator=" "/>
-        </xpath> 
+        </xpath> -->
 
         <!--
         <xpath expr="//t/div/p" position="replace">
@@ -435,10 +435,10 @@
 
         
         <!-- Spécifique pour les images -->
-        <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead/tr/th[1]" position="before">
+        <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead/tr/th[1]" position="after">
             <th name="th_image" class="text-center">Image</th>
         </xpath>
-        <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody/t[2]/tr/t/td[1]" position="before">
+        <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody/t[3]/tr/t/td[1]" position="after">
             <td><span t-field="line.product_id.image_128" t-options-widget="&quot;image&quot;"/></td>
         </xpath>
          
@@ -557,6 +557,14 @@
         </xpath>
         <xpath expr="//t[@t-if='not line.display_type']" position="inside">
             <t t-set="index" t-value="index + 1"/>
+        </xpath>
+
+        <xpath expr="//td[@name='td_note_line']//span" position="attributes">
+            <attribute name="style" add="margin-left:30px;" separator=" "/>
+        </xpath>
+
+         <xpath expr="//td[@name='td_section_line']//span" position="attributes">
+            <attribute name="style" add="margin-left:30px;" separator=" "/>
         </xpath>
               
     </template>

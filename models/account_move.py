@@ -17,18 +17,21 @@ class AccountMove(models.Model):
     travaux_termines = fields.Boolean()
     salesperson_eval = fields.Boolean(string="Exclure de l'évaluation du vendeur",tracking=True)
     salesperson_eval_reason = fields.Char(string='Raison', tracking=True)
-    derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement')
+    date_last_payment = fields.Date(compute='_compute_date_last_payment', store=True)
     exclude_from_review = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True, copy=False)
 
-    def _compute_derniere_date_paiement(self):
-        for move in self:
+    def _compute_date_last_payment(self):
+        last_payment_dates = {}        
+        moves = self.filtered(lambda move: move.sudo().invoice_payments_widget)
+        for move in moves:
             last_date = False
-            invoice_payments_widget = move.sudo().invoice_payments_widget
-            if invoice_payments_widget:
-                for payment in invoice_payments_widget['content']:
-                    if not last_date or payment['date'] > last_date:
-                        last_date = payment['date']
-            move.derniere_date_paiement = last_date
+            invoice_payments_widget = move.sudo().invoice_payments_widget['content']
+            for payment in invoice_payments_widget:
+                if not last_date or payment['date'] > last_date:
+                    last_date = payment['date']
+            last_payment_dates[move.id] = last_date
+        for move in moves:
+            move.date_last_payment = last_payment_dates[move.id]
 
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):

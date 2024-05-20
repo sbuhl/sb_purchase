@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
+import logging
 
-from odoo import models, fields
+from odoo import api, models, fields, SUPERUSER_ID
 
+_logger = logging.getLogger(__name__)
+
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    last_sale_date = fields.Date(string="Last Sale Date")
 
 class SaleOrder(models.Model):
     _name = "sale.order"
@@ -36,3 +44,33 @@ class SaleOrder(models.Model):
             all_invoices |= related_invoices | ii
             all_orders |= related_orders | oo
         return all_orders, all_invoices
+
+    def action_confirm(self):
+        result = super(SaleOrder, self).action_confirm()
+        today_date = fields.Date.today()
+        for line in self.order_line:
+            if not line.product_id.last_sale_date:
+                line.product_id.write({'last_sale_date': today_date})
+        return result
+
+    def update_last_sale_date(self):
+        sale_orders = self.env['sale.order'].search(
+            [('state', '=', 'sale'),
+             ('date_order', '>=', '2022-01-01'),
+             ('date_order', '<=', '2024-05-31')],
+            order='date_order desc'
+        )
+        _logger.info(f"Found {len(sale_orders)} confirmed sale orders.")
+        processed_products = set()
+
+        for sale_order in sale_orders:
+            sale_date = sale_order.date_order.date()
+            _logger.info(f"Processing sale order {sale_order.name} with date {sale_date}")
+            for line in sale_order.order_line:
+                product = line.product_id
+                if product.id not in processed_products:
+                    if not product.last_sale_date or product.last_sale_date < sale_date:
+                        _logger.info(f"Updating last_sale_date for product: {product.name} to {sale_date}")
+                        product.write({'last_sale_date': sale_date})
+                        processed_products.add(product.id)
+        return True  # Retourne une valeur pour indiquer que l'action a été complétée

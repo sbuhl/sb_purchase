@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
     # add tracking to this existing field
     referrer_id = fields.Many2one(tracking=True)
 
-    exclude_from_review = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True, copy=False)
+    exclude_from_review = fields.Boolean(string="Exclude from the salesperon's evaluation", tracking=True, copy=False)
 
     def write(self, values):
         res = super().write(values)

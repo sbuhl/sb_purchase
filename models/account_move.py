@@ -18,7 +18,7 @@ class AccountMove(models.Model):
     salesperson_eval = fields.Boolean(string="Exclure de l'évaluation du vendeur",tracking=True)
     salesperson_eval_reason = fields.Char(string='Raison', tracking=True)
     derniere_date_paiement = fields.Date(compute='_compute_derniere_date_paiement')
-    exclude_from_review = fields.Boolean(string="Exclure de l'évaluation du vendeur", tracking=True, copy=False)
+    exclude_from_review = fields.Boolean(string="Exclude from the salesperon's evaluation", tracking=True, copy=False)
 
     def _compute_derniere_date_paiement(self):
         for move in self:

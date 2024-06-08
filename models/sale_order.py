@@ -50,7 +50,7 @@ class SaleOrder(models.Model):
         today_date = fields.Date.today()
         for line in self.order_line:
             if not line.product_id.last_sale_date:
-                line.product_id.write({'last_sale_date': today_date})
+                line.product_id.sudo().write({'last_sale_date': today_date})
         return result
 
     def update_last_sale_date(self):

@@ -11,7 +11,7 @@ class Partner(models.Model):
     _inherit = "res.partner"
 
     rccm = fields.Char(string='RCCM', help="Registre de Commerce et du Crédit Mobilier - CD/YYY/RCCM/xx-Y-xxxxx (where x = number and Y = capitalised letter)")
-    id_nat = fields.Char(string='Id. Nat.', help="Identification Nationale - xx-Yxxxx-YxxxxxY (where x = number and Y = capitalised letter)")
+    id_nat = fields.Char(string='Id. Nat.', help="Identification Nationale - xx-xxx-YxxxxxY or xx-Yxxxx-YxxxxxY (where x = number and Y = capitalised letter)")
     nif = fields.Char(string='NIF', help="Numéro d'Identification Fiscale - YxxxxxxxY (where x = number and Y = capitalised letter)")
 
     @api.constrains('rccm')
@@ -23,10 +23,10 @@ class Partner(models.Model):
 
     @api.constrains('id_nat')
     def _check_id_nat(self):
-        pattern = r'^[0-9]{2}-[A-Z]{1}[0-9]{4}-[A-Z]{1}[0-9]{5}[A-Z]{1}$'
+        pattern = r'^[0-9]{2}-[0-9]{3}-[A-Z]{1}[0-9]{5}[A-Z]{1}$|^[0-9]{2}-[A-Z]{1}[0-9]{4}-[A-Z]{1}[0-9]{5}[A-Z]{1}$'
         for partner in self:
             if partner.id_nat and not re.match(pattern, partner.id_nat):
-                raise ValidationError(_("Id. Nat. number is not valid. It should respect the following: xx-Yxxxx-YxxxxxY (where x = number and Y = capitalised letter)"))
+                raise ValidationError(_("Id. Nat. number is not valid. It should respect one of the following formats: xx-xxx-YxxxxxY or xx-Yxxxx-YxxxxxY (where x = number and Y = capitalised letter)"))
 
     @api.constrains('nif')
     def _check_nif(self):

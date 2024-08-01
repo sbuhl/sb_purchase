@@ -1,35 +1,29 @@
-// TODO: What do you want to keep? Now with MILK everything is different in 17
+.o_home_menu_background, .o_web_client.o_home_menu_background{
+        position: relative;
+        background: 
+            url('/gse_custo/static/img/goshop_logo.svg') no-repeat 20px 35px,
+            var(--homeMenu-bg-image, url("/web_enterprise/static/img/background-light.svg"));
+        background-size: 280px auto, cover;
+        background-attachment: fixed, fixed;
+        background-color: var(--homeMenu-bg-color, #f5f5f5);
+}
 
-// .o_main_navbar {
-//     background: linear-gradient(to right bottom, #0f172a, #090979);
-//     border-bottom: rgb(15, 23, 0);
-// }
+/* Pour iPad (portrait et paysage) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    body {
+        background: 
+            url('/gse_custo/static/img/goshop_logo.svg') no-repeat center center,
+            var(--homeMenu-bg-image, url("/web_enterprise/static/img/background-light.svg"));
+        background-size: 250px auto, cover;
+    }
+}
 
-// .o_main_navbar > a:hover, .o_main_navbar > a:focus, .o_main_navbar > button:hover, .o_main_navbar > button:focus{
-//     background: linear-gradient(to right bottom, #0f172a, #090979);
-// }
-// .o_main_navbar > ul > li > a:hover, .o_main_navbar > ul > li > label:hover{
-//     background: linear-gradient(to right bottom, #0f172a, #090979);
-// }
-// .o_main_navbar .show .dropdown-toggle{
-//     background: linear-gradient(to right bottom, #0f172a, #090979);
-// }
-
-// li.show{
-//     background: linear-gradient(to right bottom, #0f172a, #090979);
-// }
-
-// .o_home_menu_background {
-//     background: linear-gradient(to right bottom, #0f172a, #090979)!important;
-// }
-
-// .o_ChatWindowHeader{
-//     background: linear-gradient(to right bottom, #0f172a, #090979);
-// }
-
-// .o_searchview .o_searchview_facet .o_searchview_facet_label{
-//     background: linear-gradient(to right bottom, #0f172a, #090979);
-// }
-// .datepicker{
-//     background-color:white;
-// }
+/* Pour iPhone (portrait et paysage) */
+@media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
+    body {
+        background: 
+            url('/gse_custo/static/img/goshop_logo.svg') no-repeat right bottom,
+            var(--homeMenu-bg-image, url("/web_enterprise/static/img/background-light.svg"));
+        background-size: 250px auto, cover;
+    }
+}

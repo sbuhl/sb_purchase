@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#New_Gradient_Swatch);
+      }
+
+      .cls-2 {
+        fill: url(#New_Gradient_Swatch-6);
+      }
+
+      .cls-2, .cls-3 {
+        fill-opacity: .2;
+      }
+
+      .cls-3 {
+        fill: url(#New_Gradient_Swatch-5);
+      }
+
+      .cls-4 {
+        fill: url(#New_Gradient_Swatch-4);
+      }
+
+      .cls-5 {
+        fill: url(#New_Gradient_Swatch-3);
+      }
+
+      .cls-6 {
+        fill: url(#New_Gradient_Swatch-2);
+      }
+    </style>
+    <linearGradient id="New_Gradient_Swatch" data-name="New Gradient Swatch" x1="-222.4" y1="352.8" x2="904.3" y2="1156.7" gradientTransform="translate(0 1080) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f172b"/>
+      <stop offset=".4" stop-color="#0c1050"/>
+      <stop offset=".7" stop-color="#090979"/>
+      <stop offset="1" stop-color="#0f172b"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch-2" data-name="New Gradient Swatch" x1="407.2" y1="58.2" x2="1848.5" y2="1233.1" xlink:href="#New_Gradient_Swatch"/>
+    <linearGradient id="New_Gradient_Swatch-3" data-name="New Gradient Swatch" x1="1142.3" y1="233.4" x2="1951.8" y2="943.8" xlink:href="#New_Gradient_Swatch"/>
+    <linearGradient id="New_Gradient_Swatch-4" data-name="New Gradient Swatch" x1="1409.7" y1="9" x2="2071" y2="554" xlink:href="#New_Gradient_Swatch"/>
+    <linearGradient id="New_Gradient_Swatch-5" data-name="New Gradient Swatch" x1="652.7" y1="935.3" x2="654.7" y2="935.3" gradientTransform="translate(-896946 -352476) rotate(90) scale(540 -960)" xlink:href="#New_Gradient_Swatch"/>
+    <linearGradient id="New_Gradient_Swatch-6" data-name="New Gradient Swatch" x1="0" y1="540" x2="1920" y2="540" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#New_Gradient_Swatch"/>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Layer_1">
+      <path class="cls-1" d="M3.5,1080h72.8L1153.6,0H3.5v1080Z"/>
+      <path class="cls-6" d="M76.3,1080h766.6L1920,.2v-.2h-766.4L76.3,1080Z"/>
+      <path class="cls-5" d="M1920,.2L843,1080h220.1L1920,220.9V.2Z"/>
+      <path class="cls-4" d="M1920,1080V220.9l-856.9,859.1h856.9Z"/>
+      <rect class="cls-3" width="1920" height="1080"/>
+      <rect class="cls-2" width="1920" height="1080"/>
+    </g>
+  </g>
+</svg>

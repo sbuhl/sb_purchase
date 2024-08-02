@@ -8,8 +8,7 @@
 			<field name="arch" type="xml">
 				<data>
 					<xpath expr="//field[@name='payment_term_id']" position="after">
-						<!-- TODO -->
-                        <!-- <xpath expr="//group[@name='sale_shipping']/field[@name='warehouse_id'][2]" position="move"/> -->
+						<xpath expr="//group[@name='sale_shipping']/field[@name='warehouse_id'][2]" position="move"/>
                         <xpath expr="//group[@name='sale_shipping']/label[@for='commitment_date']" position="move"/>
                         <xpath expr="//group[@name='sale_shipping']/div" position="move"/>
                     </xpath>

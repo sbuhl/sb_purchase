@@ -12,13 +12,11 @@
                         <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/>
                     </p>
                 </div>
-
                 <div t-if="doc.partner_id.company_type == 'company' and doc.partner_id.country_id.code == 'CD'">
                     <p t-if="doc.partner_id.nif">NIF: <span t-field="doc.partner_id.nif"/></p>
                     <p t-if="doc.partner_id.rccm">RCCM: <span t-field="doc.partner_id.rccm"/></p>
                     <p t-if="doc.partner_id.id_nat">Id Nat: <span t-field="doc.partner_id.id_nat"/></p>
                 </div>
-
                 <div t-if="doc.partner_id.company_type != 'company'">
                     <div t-if="doc.partner_id.parent_id.country_id.code == 'CD'">
                         <p t-if="doc.partner_id.parent_id.nif">NIF: <t t-esc="doc.partner_id.parent_id.nif"/></p>
@@ -45,7 +43,6 @@
             </t>
             <div class="page">
                 <div class="oe_structure"/>
-
                 <h2 class="mt16">
                     <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                         <span t-if="doc.state not in ['draft','sent']">Order # </span>
@@ -56,7 +53,6 @@
                     </t>
                     <span t-field="doc.name"/>
                 </h2>
-
                 <div class="row mt32 mb32" id="informations">
                     <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2">
                         <strong>Your Reference:</strong>
@@ -79,10 +75,8 @@
                         <p class="m-0" t-field="doc.user_id"/>
                     </div>
                 </div>
-
                 <!-- Is there a discount on at least one line? -->
                 <t t-set="display_discount" t-value="any(l.discount for l in doc.order_line)"/>
-
                 <table class="table table-sm o_main_table">
                     <!-- In case we want to repeat the header, remove "display: table-row-group" -->
                     <thead style="display: table-row-group">
@@ -101,14 +95,10 @@
                         </tr>
                     </thead>
                     <tbody class="sale_tbody">
-
                         <t t-set="current_subtotal" t-value="0"/>
-
                         <t t-foreach="doc.order_line" t-as="line">
-
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
-
                             <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
                                 <t t-if="not line.display_type">
                                     <td name="td_name"><span t-field="line.name"/></td>
@@ -143,7 +133,6 @@
                                     </td>
                                 </t>
                             </tr>
-
                             <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
                                 <tr class="is-subtotal text-right">
                                     <td name="td_section_subtotal" colspan="99">
@@ -155,7 +144,6 @@
                         </t>
                     </tbody>
                 </table>
-
                 <div class="clearfix" name="so_total_summary">
                     <div id="total" class="row" name="total">
                         <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
@@ -167,7 +155,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">
                     <div class="offset-8">
                         <strong>Signature</strong>
@@ -179,15 +166,11 @@
                         <p t-field="doc.signed_by"/>
                     </div>
                 </div>
-
                 <div class="oe_structure"/>
-
-                
                 <p t-field="doc.note"/>
                 <p t-if="not is_html_empty(doc.payment_term_id.note)">
                     <span t-field="doc.payment_term_id.note"/>
                 </p>
-            
                 <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
                     <strong>Fiscal Position Remark:</strong>
                     <span t-field="doc.fiscal_position_id.sudo().note"/>
@@ -217,7 +200,6 @@
             </t>
             <div class="page">
                 <div class="oe_structure"/>
-
                 <h2 class="mt16">
                     <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                         <span t-if="doc.state not in ['draft','sent']">Order # </span>
@@ -228,9 +210,7 @@
                     </t>
                     <span t-field="doc.name"/>
                 </h2>
-
                 <div class="row mt32 mb32" id="informations">
-                    
                 <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
                     <strong>Salesperson:</strong>
                     <p class="m-0" t-field="doc.user_id"/>
@@ -255,11 +235,8 @@
                 <div class="col-auto col-3 mw-100 mb-2" t-if="doc.incoterm" groups="sale_stock.group_display_incoterm">
                     <strong>Incoterm:</strong>
                     <p class="m-0" t-field="doc.incoterm.code"/>
-                </div>
-            
-                    
+                </div>  
             </div>
-
                 <!-- Is there a discount on at least one line? -->
                 <t t-set="display_discount" t-value="any(l.discount for l in doc.order_line)"/>
 
@@ -269,19 +246,13 @@
                         <tr>
                             <th name="th_description" class="text-left">Description</th>
                             <th name="th_quantity" class="text-right">Quantity</th>
-                            
-                           
                         </tr>
                     </thead>
                     <tbody class="sale_tbody">
-
                         <t t-set="current_subtotal" t-value="0"/>
-
                         <t t-foreach="doc.order_line" t-as="line">
-
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
-
                             <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
                                 <t t-if="not line.display_type">
                                     <td name="td_name"><span t-field="line.name"/></td>
@@ -289,8 +260,6 @@
                                         <span t-field="line.product_uom_qty"/>
                                         <span t-field="line.product_uom" style="font-size:10px;"/>
                                     </td>
-                                    
-                                    
                                 </t>
                                 <t t-if="line.display_type == 'line_section'">
                                     <td name="td_section_line" colspan="99">
@@ -305,15 +274,9 @@
                                     </td>
                                 </t>
                             </tr>
-
-                            
                         </t>
                     </tbody>
-                </table>
-
-                
-
-                
+                </table>      
                 <style>
                     .o_report_layout_boxed table thead tr th{
                     text-transform: capitalize!important;
@@ -322,7 +285,6 @@
                     table tbody tr td{
                     border-top: 1px solid #DEE2E6!important;
                     }
-
                 </style>
             <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">
                     <div class="offset-8">
@@ -370,11 +332,7 @@
                     </tbody>
                 </table>
             </div>
-        
-
                 <div class="oe_structure"/>
-
-                
                 <div style="font-size:10px">
                     <p t-if="not is_html_empty(doc.payment_term_id.note)">
                         <span t-field="doc.payment_term_id.note"/>
@@ -394,46 +352,11 @@
     
     </template>
 
-    <template id="report_saleorder_document" inherit_id="gse_custo.report_saleorder_document_copy">
-        <!-- To have the same than other reports -->
-        <xpath expr="//div[@name='signature']" position="before">
-            <style>
-                .o_report_layout_boxed table thead tr th{
-                text-transform: capitalize!important;
-                
-                }
-                table tbody tr td{
-                border-top: 1px solid #DEE2E6!important;
-                }
-
-            </style>
-        </xpath>
+    <template id="report_saleorder_document_images" inherit_id="gse_custo.report_saleorder_document_copy">
         <xpath expr="//t/t/div/table/tbody/t[2]/tr/t/td[2]/span[2]" position="attributes"> 
             <attribute name="style" add="font-size:10px;" separator=" "/>
         </xpath>
 
-        <!--
-        <xpath expr="//t/div/p" position="replace">
-            <div style="font-size:10px">
-                <p t-if="not is_html_empty(doc.payment_term_id.note)">
-                    <span t-field="doc.payment_term_id.note"/>
-                </p>
-                <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
-                    Fiscal Position Remark:
-                    <span t-field="doc.fiscal_position_id.sudo().note"/>
-                </p>
-            </div>
-        </xpath>
-        
-        <xpath expr="//t/div/p[last()]" position="after">
-            <xpath expr="//t/div/p[1]" position="move"/>
-        </xpath>
-
-        <xpath expr="//div[@id='informations']/div[1]" position="before">
-            <xpath expr="//div[@id='informations']/div[5]" position="move"/>
-        </xpath>-->
-
-        
         <!-- Spécifique pour les images -->
         <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead/tr/th[1]" position="before">
             <th name="th_image" class="text-center">Image</th>
@@ -470,51 +393,9 @@
     </template>
 
     <template id="report_saleorder_document_custom" inherit_id="sale_management.report_saleorder_document_inherit_sale_management">
-        <xpath expr="//div[@name='signature']" position="before">
-            <style>
-                .o_report_layout_boxed table thead tr th{
-                text-transform: capitalize!important;
-                
-                }
-                table tbody tr td{
-                border-top: 1px solid #DEE2E6!important;
-                }
-
-            </style>
-        </xpath>
         <xpath expr="//t/t/div/table/tbody/t[2]/tr/t/td[2]/span[2]" position="attributes"> 
             <attribute name="style" add="font-size:10px;" separator=" "/>
         </xpath>
-        
-        <!-- <xpath expr="//div[@id='informations']/div[5]" position="replace">
-            <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
-                <strong>Salesperson:</strong>
-                <p class="m-0" t-field="doc.user_id"/>
-                <p class="m-0" t-field="doc.user_id.phone"/>
-                <p class="m-0" t-field="doc.user_id.email"/>
-            </div>
-        </xpath>
-
-        <xpath expr="//t/div/p" position="replace">
-            <div style="font-size:10px">
-                <p t-if="not is_html_empty(doc.payment_term_id.note)">
-                    <span t-field="doc.payment_term_id.note"/>
-                </p>
-                <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">
-                    Fiscal Position Remark:
-                    <span t-field="doc.fiscal_position_id.sudo().note"/>
-                </p>
-            </div>
-        </xpath>
-        
-        <xpath expr="//t/div/p[last()]" position="after">
-            <xpath expr="//t/div/p[1]" position="move"/>
-        </xpath>
-
-        <xpath expr="//div[@id='informations']/div[1]" position="before">
-            <xpath expr="//div[@id='informations']/div[5]" position="move"/>
-        </xpath>-->
-
     </template>
 
     <template id="report_saleorder_document_inherited" inherit_id="sale.report_saleorder_document">

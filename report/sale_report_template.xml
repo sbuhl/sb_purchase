@@ -353,9 +353,9 @@
     </template>
 
     <template id="report_saleorder_document_images" inherit_id="gse_custo.report_saleorder_document_copy">
-        <xpath expr="//t/t/div/table/tbody/t[2]/tr/t/td[2]/span[2]" position="attributes"> 
+        <!-- <xpath expr="//t/t/div/table/tbody/t[2]/tr/t/td[2]/span[2]" position="attributes"> 
             <attribute name="style" add="font-size:10px;" separator=" "/>
-        </xpath>
+        </xpath> -->
 
         <!-- Spécifique pour les images -->
         <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead/tr/th[1]" position="before">

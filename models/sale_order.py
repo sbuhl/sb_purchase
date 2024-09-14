@@ -2,6 +2,7 @@
 import logging
 
 from odoo import api, models, fields, SUPERUSER_ID
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -35,7 +36,11 @@ class SaleOrder(models.Model):
         # discovered and enter infinite loop
         all_invoices = all_invoices or self.env['account.move']
         all_orders = all_orders or self.env['sale.order']
+
+
         all_orders |= self
+        
+        
         for order in self:
             related_invoices = order.order_line.invoice_lines.move_id
             related_orders = related_invoices.line_ids.sale_line_ids.order_id
@@ -74,3 +79,25 @@ class SaleOrder(models.Model):
                         product.write({'last_sale_date': sale_date})
                         processed_products.add(product.id)
         return True  # Retourne une valeur pour indiquer que l'action a été complétée
+
+    @api.multi
+    def action_confirm(self):
+        for order in self:
+            # Vérification du payment_term_id
+            if order.payment_term_id.id == 15:
+                # Vérification de l'entrepôt
+                if order.warehouse_id.id != 4:
+                    raise UserError(_("L'entrepôt doit avoir l'ID 4 pour ce type de commande."))
+
+                # Vérification de l'équipe de vente
+                if order.team_id.id != 5:
+                    raise UserError(_("L'équipe de vente doit avoir l'ID 5 pour ce type de commande."))
+
+                # Vérification des lignes de commande
+                allowed_product_template_ids = {6, 7, 9}
+                for line in order.order_line:
+                    if line.product_id.product_tmpl_id.id not in allowed_product_template_ids:
+                        raise UserError(_("Les lignes de commande ne peuvent contenir que des produits avec les IDs 6, 7 ou 9."))
+
+        # Appel de la fonction super pour continuer le processus de confirmation
+        return super(SaleOrder, self).action_confirm()

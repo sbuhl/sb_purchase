@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding='UTF-8'?>
+ <odoo>
+     <record id="sale_order_tree" model="ir.ui.view">
+         <field name="name">gse_custo.sale.order.tree</field>
+         <field name="model">sale.order</field>
+         <field name="inherit_id" ref="sale.view_order_tree"/>
+         <field name="priority">20</field>
+         <field name="arch" type="xml">
+             <data>
+                 <field name="invoice_status" position="after">
+                     <field name="invoice_payment_status" 
+                         decoration-success="invoice_payment_status == 'paid'"
+                         decoration-info="invoice_payment_status in ('in_payment', 'partially_paid')"
+                         decoration-warning="invoice_payment_status == 'not_paid'" widget="badge" optional="show" />
+                 </field>
+             </data>
+         </field>
+     </record>
+ </odoo>
